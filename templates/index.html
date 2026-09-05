@@ -1,77 +1,338 @@
 <!DOCTYPE html>
 <html lang="ur">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>For Eman Nasir ❤️</title>
 
 <style>
 
+/* =====================================================
+   BASIC
+===================================================== */
+
 * {
     box-sizing: border-box;
 }
 
+html,
 body {
     margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+
     overflow: hidden;
-    min-height: 100vh;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
     background:
-        radial-gradient(circle at 50% 35%, #302060 0%, #11142f 45%, #050711 100%);
+        radial-gradient(
+            circle at 50% 35%,
+            #493b68 0%,
+            #292344 35%,
+            #15182f 65%,
+            #070a16 100%
+        );
 
-    font-family: Georgia, "Times New Roman", serif;
     color: white;
 }
 
-/* ================= SCENE ================= */
 
-.scene {
-    position: relative;
-    width: 100%;
-    height: 100vh;
+/* =====================================================
+   FIRST QUESTION SCREEN
+===================================================== */
+
+#questionScreen {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 25px;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 40%,
+            #59456f 0%,
+            #2a2447 45%,
+            #0b0d1d 100%
+        );
+
+    transition:
+        opacity 2s ease,
+        visibility 2s ease;
+}
+
+
+#questionScreen.hide {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+
+.questionBox {
+
+    max-width: 650px;
+
+    padding: 35px 25px;
+
+    animation:
+        questionFloat 7s ease-in-out infinite;
+}
+
+
+.questionSmall {
+
+    font-size: 18px;
+
+    color: #f8dce8;
+
+    margin-bottom: 15px;
+}
+
+
+.questionName {
+
+    font-size: 36px;
+
+    font-weight: bold;
+
+    color: #fff1f7;
+
+    text-shadow:
+
+        0 0 12px rgba(255,180,210,.8),
+        0 0 30px rgba(255,90,150,.4);
+
+    margin-bottom: 18px;
+}
+
+
+.question {
+
+    font-size: 30px;
+
+    line-height: 1.5;
+
+    margin-bottom: 30px;
+
+    color: white;
+
+    text-shadow:
+        0 0 15px rgba(255,255,255,.25);
+}
+
+
+.questionFlower {
+
+    font-size: 55px;
+
+    margin-bottom: 20px;
+
+    animation:
+        flowerPulse 5s ease-in-out infinite;
+}
+
+
+.buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 18px;
+
+    flex-wrap: wrap;
+}
+
+
+.loveButton {
+
+    border: none;
+
+    padding:
+        14px 28px;
+
+    border-radius: 40px;
+
+    font-size: 18px;
+
+    font-family: Georgia, serif;
+
+    cursor: pointer;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e85d91,
+            #a93672
+        );
+
+    box-shadow:
+        0 8px 25px rgba(180,40,100,.35);
+
+    transition:
+        transform .4s ease,
+        box-shadow .4s ease;
+}
+
+
+.loveButton:hover {
+
+    transform:
+        translateY(-4px)
+        scale(1.04);
+
+    box-shadow:
+        0 12px 35px rgba(255,70,150,.45);
+}
+
+
+@keyframes questionFloat {
+
+    0%,100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-8px);
+    }
+}
+
+
+@keyframes flowerPulse {
+
+    0%,100% {
+        transform:
+            scale(1);
+    }
+
+    50% {
+        transform:
+            scale(1.08);
+    }
+}
+
+
+/* =====================================================
+   MAIN WEBSITE
+===================================================== */
+
+#garden {
+
+    position: fixed;
+
+    inset: 0;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 3s ease;
+
     overflow: hidden;
 }
 
-/* ================= STARS ================= */
 
-.star {
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    background: white;
-    border-radius: 50%;
+#garden.show {
 
-    animation: twinkle 2s infinite alternate;
+    opacity: 1;
+
+    visibility: visible;
 }
 
-.s1 { left: 8%; top: 15%; animation-delay: .2s; }
-.s2 { left: 18%; top: 28%; animation-delay: .8s; }
-.s3 { left: 30%; top: 10%; animation-delay: .4s; }
-.s4 { left: 48%; top: 18%; animation-delay: 1s; }
-.s5 { left: 65%; top: 12%; animation-delay: .5s; }
-.s6 { left: 78%; top: 25%; animation-delay: 1.3s; }
-.s7 { left: 90%; top: 12%; animation-delay: .7s; }
-.s8 { left: 85%; top: 40%; animation-delay: 1.1s; }
-.s9 { left: 12%; top: 45%; animation-delay: .9s; }
-.s10 { left: 72%; top: 45%; animation-delay: .3s; }
+
+/* =====================================================
+   STARS
+===================================================== */
+
+.star {
+
+    position: absolute;
+
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    animation:
+        twinkle 7s ease-in-out infinite;
+}
+
+
+.s1  { left: 8%;  top: 13%; animation-delay: 0s; }
+.s2  { left: 18%; top: 27%; animation-delay: 1s; }
+.s3  { left: 29%; top: 10%; animation-delay: 2s; }
+.s4  { left: 40%; top: 20%; animation-delay: 3s; }
+.s5  { left: 53%; top: 11%; animation-delay: 1.5s; }
+.s6  { left: 65%; top: 23%; animation-delay: 4s; }
+.s7  { left: 76%; top: 13%; animation-delay: 2.5s; }
+.s8  { left: 89%; top: 30%; animation-delay: 1s; }
+.s9  { left: 13%; top: 43%; animation-delay: 3.5s; }
+.s10 { left: 83%; top: 45%; animation-delay: 5s; }
+.s11 { left: 57%; top: 34%; animation-delay: 2s; }
+.s12 { left: 34%; top: 40%; animation-delay: 4s; }
+
 
 @keyframes twinkle {
 
-    from {
+    0%,100% {
+
         opacity: .2;
-        transform: scale(.6);
+
+        transform:
+            scale(.7);
     }
 
-    to {
+    50% {
+
         opacity: 1;
-        transform: scale(1.5);
+
+        transform:
+            scale(1.4);
     }
 }
 
-/* ================= MOON ================= */
+
+/* =====================================================
+   MOON
+===================================================== */
 
 .moon {
+
     position: absolute;
 
     top: 7%;
@@ -82,41 +343,110 @@ body {
 
     border-radius: 50%;
 
-    background: #fff7d0;
+    background: #fff6d5;
 
     box-shadow:
-        0 0 25px #fff7d0,
-        0 0 60px rgba(255,240,180,.5);
+
+        0 0 20px #fff6d5,
+        0 0 55px rgba(255,245,210,.45);
+
+    animation:
+        moonGlow 8s ease-in-out infinite;
 }
 
-/* ================= MAIN FLOWER ================= */
+
+@keyframes moonGlow {
+
+    0%,100% {
+
+        box-shadow:
+
+            0 0 20px #fff6d5,
+            0 0 50px rgba(255,245,210,.35);
+    }
+
+    50% {
+
+        box-shadow:
+
+            0 0 30px #fff6d5,
+            0 0 75px rgba(255,245,210,.55);
+    }
+}
+
+
+/* =====================================================
+   GROUND
+===================================================== */
+
+.ground {
+
+    position: absolute;
+
+    bottom: 0;
+
+    width: 100%;
+
+    height: 18%;
+
+    background:
+
+        linear-gradient(
+            to top,
+            #020907,
+            #071c14
+        );
+
+    box-shadow:
+        0 -10px 40px rgba(50,130,90,.15);
+}
+
+
+/* =====================================================
+   MAIN FLOWER
+===================================================== */
 
 .flower {
+
     position: absolute;
 
     left: 50%;
-    top: 43%;
+
+    top: 39%;
 
     width: 240px;
-    height: 340px;
 
-    transform: translate(-50%, -50%);
+    height: 350px;
 
-    animation: flowerSway 4s ease-in-out infinite;
+    transform:
+        translate(-50%, -50%);
+
+    animation:
+        flowerSway 10s ease-in-out infinite;
 }
+
 
 @keyframes flowerSway {
 
     0%,100% {
-        transform: translate(-50%, -50%) rotate(-2deg);
+
+        transform:
+            translate(-50%, -50%)
+            rotate(-1.5deg);
     }
 
     50% {
-        transform: translate(-50%, -50%) rotate(2deg);
+
+        transform:
+            translate(-50%, -50%)
+            rotate(1.5deg);
     }
 }
 
-/* ================= STEM ================= */
+
+/* =====================================================
+   STEM
+===================================================== */
 
 .stem {
 
@@ -126,24 +456,28 @@ body {
     top: 105px;
 
     width: 12px;
+
     height: 200px;
 
     border-radius: 20px;
 
     background:
+
         linear-gradient(
             to right,
-            #145c30,
-            #62dc7d,
-            #145c30
+            #15582f,
+            #65d77d,
+            #15582f
         );
 
     transform-origin: top;
 
-    animation: stemGrow 2s ease forwards;
+    animation:
+        growStem 5s ease forwards;
 }
 
-@keyframes stemGrow {
+
+@keyframes growStem {
 
     from {
         height: 0;
@@ -154,440 +488,868 @@ body {
     }
 }
 
-/* ================= PETALS ================= */
+
+/* =====================================================
+   PINK PETALS
+===================================================== */
 
 .petal {
 
     position: absolute;
 
-    left: 80px;
+    left: 78px;
+
     top: 40px;
 
-    width: 85px;
+    width: 86px;
+
     height: 115px;
 
     border-radius: 50%;
 
     background:
+
         radial-gradient(
             circle at 35% 25%,
-            #ffb8d2,
-            #ff4f8b 55%,
-            #c91458
+            #ffd5e3,
+            #ff719f 55%,
+            #d92766
         );
 
-    transform-origin: 42px 78px;
+    transform-origin:
+        43px 78px;
 
     opacity: 0;
 
     box-shadow:
-        0 0 18px rgba(255,70,140,.55);
+        0 0 15px rgba(255,80,140,.4);
 
-    animation: bloom 1s ease forwards;
+    animation:
+        bloom 2.5s ease forwards;
 }
+
 
 .p1 {
-    transform: rotate(0deg) translateY(-58px);
-    animation-delay: .5s;
+    transform:
+        rotate(0deg)
+        translateY(-58px);
+
+    animation-delay: 1s;
 }
+
 
 .p2 {
-    transform: rotate(72deg) translateY(-58px);
-    animation-delay: .7s;
+    transform:
+        rotate(72deg)
+        translateY(-58px);
+
+    animation-delay: 1.4s;
 }
+
 
 .p3 {
-    transform: rotate(144deg) translateY(-58px);
-    animation-delay: .9s;
+    transform:
+        rotate(144deg)
+        translateY(-58px);
+
+    animation-delay: 1.8s;
 }
+
 
 .p4 {
-    transform: rotate(216deg) translateY(-58px);
-    animation-delay: 1.1s;
+    transform:
+        rotate(216deg)
+        translateY(-58px);
+
+    animation-delay: 2.2s;
 }
 
+
 .p5 {
-    transform: rotate(288deg) translateY(-58px);
-    animation-delay: 1.3s;
+    transform:
+        rotate(288deg)
+        translateY(-58px);
+
+    animation-delay: 2.6s;
 }
+
 
 @keyframes bloom {
 
     from {
+
         opacity: 0;
-        transform: scale(0);
+
+        transform:
+            scale(0);
     }
 
     to {
+
         opacity: 1;
     }
 }
 
-/* ================= FLOWER CENTER ================= */
+
+/* =====================================================
+   WHITE PEONY CENTER
+===================================================== */
 
 .center {
 
     position: absolute;
 
-    left: 87px;
-    top: 62px;
+    left: 77px;
 
-    width: 72px;
-    height: 72px;
+    top: 53px;
+
+    width: 92px;
+
+    height: 92px;
+
+    border-radius: 50%;
+
+    z-index: 20;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 45%,
+            #ffffff 0%,
+            #fffafd 28%,
+            #fbe1ec 48%,
+            #ffffff 68%,
+            #f0cfdd 100%
+        );
+
+    box-shadow:
+
+        0 0 15px rgba(255,255,255,.95),
+        0 0 35px rgba(255,215,232,.75),
+        0 0 65px rgba(255,180,215,.4);
+
+    animation:
+        peonyBreath 9s ease-in-out infinite;
+}
+
+
+.center::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 14px;
+
+    top: 14px;
+
+    width: 64px;
+
+    height: 64px;
 
     border-radius: 50%;
 
     background:
+
         radial-gradient(
             circle,
-            #fff28a,
-            #ffc928
+            #ffffff 0%,
+            #fff8fc 40%,
+            #f5ccdc 70%,
+            #ffffff 100%
         );
 
     box-shadow:
-        0 0 25px #ffd83d;
+        inset 0 0 15px rgba(220,150,180,.25);
 
-    z-index: 10;
-
-    animation: heartbeat 2s infinite;
+    animation:
+        innerPeony 8s ease-in-out infinite;
 }
 
-@keyframes heartbeat {
+
+.center::after {
+
+    content: "✿";
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    font-size: 22px;
+
+    color: #eaa1be;
+
+    text-shadow:
+        0 0 8px white,
+        0 0 15px #f3c5d9;
+
+    animation:
+        tinyGlow 7s ease-in-out infinite;
+}
+
+
+@keyframes peonyBreath {
 
     0%,100% {
-        transform: scale(1);
+
+        transform:
+            scale(1)
+            rotate(-2deg);
+
+        box-shadow:
+
+            0 0 15px rgba(255,255,255,.95),
+            0 0 35px rgba(255,215,232,.75),
+            0 0 65px rgba(255,180,215,.4);
     }
 
     50% {
-        transform: scale(1.08);
+
+        transform:
+            scale(1.08)
+            rotate(2deg);
+
+        box-shadow:
+
+            0 0 22px rgba(255,255,255,1),
+            0 0 48px rgba(255,215,232,.9),
+            0 0 80px rgba(255,180,215,.55);
     }
 }
 
-/* ================= LEAVES ================= */
+
+@keyframes innerPeony {
+
+    0%,100% {
+        transform:
+            scale(.94);
+    }
+
+    50% {
+        transform:
+            scale(1.08);
+    }
+}
+
+
+@keyframes tinyGlow {
+
+    0%,100% {
+
+        opacity: .55;
+
+        transform:
+            translate(-50%, -50%)
+            scale(.9);
+    }
+
+    50% {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.15);
+    }
+}
+
+
+/* =====================================================
+   LEAVES
+===================================================== */
 
 .leaf {
 
     position: absolute;
 
     width: 75px;
+
     height: 34px;
 
     background:
+
         linear-gradient(
             135deg,
-            #69e58b,
-            #168d42
+            #69d981,
+            #178744
         );
 
-    border-radius: 100% 0 100% 0;
+    border-radius:
+        100% 0 100% 0;
 }
+
 
 .leaf.left {
 
-    left: 48px;
+    left: 45px;
+
     top: 215px;
 
-    transform: rotate(-25deg);
+    transform:
+        rotate(-25deg);
 }
+
 
 .leaf.right {
 
-    right: 48px;
+    right: 45px;
+
     top: 240px;
 
-    transform: rotate(155deg);
+    transform:
+        rotate(155deg);
 }
 
-/* ================= ROSES ================= */
 
-.rose {
+/* =====================================================
+   RED ROSES
+===================================================== */
+
+.red-rose {
 
     position: absolute;
 
-    font-size: 55px;
+    font-size: 52px;
 
     filter:
-        drop-shadow(0 0 10px rgba(255,40,90,.7));
+        drop-shadow(
+            0 0 10px
+            rgba(255,50,80,.55)
+        );
 
     animation:
-        roseAppear 2s ease forwards,
-        roseFloat 4s ease-in-out infinite;
+        roseFloat 11s ease-in-out infinite;
 }
 
+
 .rose1 {
-    left: 8%;
-    bottom: 15%;
+    left: 7%;
+    bottom: 13%;
     animation-delay: 1s;
 }
 
+
 .rose2 {
     left: 20%;
-    bottom: 8%;
-    animation-delay: 1.5s;
+    bottom: 7%;
+    animation-delay: 4s;
 }
+
 
 .rose3 {
     right: 20%;
-    bottom: 10%;
+    bottom: 8%;
     animation-delay: 2s;
 }
 
+
 .rose4 {
     right: 7%;
-    bottom: 17%;
-    animation-delay: 2.5s;
+    bottom: 14%;
+    animation-delay: 5s;
 }
 
-@keyframes roseAppear {
-
-    from {
-        opacity: 0;
-        transform: scale(0);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
 
 @keyframes roseFloat {
 
     0%,100% {
-        margin-top: 0;
+
+        transform:
+            translateY(0)
+            rotate(-2deg);
     }
 
     50% {
-        margin-top: -12px;
+
+        transform:
+            translateY(-10px)
+            rotate(2deg);
     }
 }
 
-/* ================= FALLING PETALS ================= */
 
-.fallingPetal {
+/* =====================================================
+   PEONIES
+===================================================== */
+
+.peony {
 
     position: absolute;
 
-    top: -30px;
+    font-size: 46px;
 
-    font-size: 22px;
+    filter:
+        drop-shadow(
+            0 0 10px
+            rgba(255,190,220,.45)
+        );
 
-    animation: fall 7s linear infinite;
-
-    opacity: 0;
+    animation:
+        peonyFloat 12s ease-in-out infinite;
 }
 
-.fp1 {
+
+.peony1 {
     left: 12%;
-    animation-delay: 1s;
-}
-
-.fp2 {
-    left: 30%;
-    animation-delay: 3s;
-}
-
-.fp3 {
-    left: 55%;
+    top: 38%;
     animation-delay: 2s;
 }
 
-.fp4 {
-    left: 75%;
-    animation-delay: 4s;
-}
 
-.fp5 {
-    left: 90%;
+.peony2 {
+    right: 12%;
+    top: 40%;
     animation-delay: 5s;
 }
 
-@keyframes fall {
 
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0;
+.peony3 {
+    left: 28%;
+    bottom: 19%;
+    animation-delay: 4s;
+}
+
+
+.peony4 {
+    right: 29%;
+    bottom: 19%;
+    animation-delay: 7s;
+}
+
+
+@keyframes peonyFloat {
+
+    0%,100% {
+
+        transform:
+            translateY(0)
+            rotate(-2deg);
     }
 
-    15% {
-        opacity: 1;
-    }
+    50% {
 
-    100% {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
+        transform:
+            translateY(-8px)
+            rotate(2deg);
     }
 }
 
-/* ================= HEARTS ================= */
+
+/* =====================================================
+   HEARTS
+===================================================== */
 
 .heart {
 
     position: absolute;
 
-    bottom: -30px;
+    bottom: -40px;
 
-    font-size: 25px;
-
-    animation: heartFloat 7s linear infinite;
+    font-size: 23px;
 
     opacity: 0;
+
+    animation:
+        heartRise 14s linear infinite;
 }
+
 
 .h1 {
-    left: 15%;
-    animation-delay: 1s;
-}
-
-.h2 {
-    left: 38%;
-    animation-delay: 3s;
-}
-
-.h3 {
-    left: 68%;
+    left: 10%;
     animation-delay: 2s;
 }
 
-.h4 {
-    left: 85%;
+.h2 {
+    left: 30%;
+    animation-delay: 6s;
+}
+
+.h3 {
+    left: 50%;
     animation-delay: 4s;
 }
 
-@keyframes heartFloat {
+.h4 {
+    left: 70%;
+    animation-delay: 8s;
+}
+
+.h5 {
+    left: 88%;
+    animation-delay: 10s;
+}
+
+
+@keyframes heartRise {
 
     0% {
-        transform: translateY(0) scale(.5);
+
+        transform:
+            translateY(0)
+            scale(.5);
+
         opacity: 0;
     }
 
     20% {
-        opacity: 1;
+        opacity: .8;
+    }
+
+    50% {
+        opacity: .65;
     }
 
     100% {
-        transform: translateY(-100vh) scale(1.3);
+
+        transform:
+            translateY(-105vh)
+            scale(1.1);
+
         opacity: 0;
     }
 }
 
-/* ================= SPARKLES ================= */
+
+/* =====================================================
+   FALLING PETALS
+===================================================== */
+
+.falling {
+
+    position: absolute;
+
+    top: -40px;
+
+    font-size: 20px;
+
+    opacity: 0;
+
+    animation:
+        fallingPetal 14s linear infinite;
+}
+
+
+.f1 {
+    left: 10%;
+    animation-delay: 2s;
+}
+
+.f2 {
+    left: 25%;
+    animation-delay: 7s;
+}
+
+.f3 {
+    left: 43%;
+    animation-delay: 4s;
+}
+
+.f4 {
+    left: 63%;
+    animation-delay: 9s;
+}
+
+.f5 {
+    left: 80%;
+    animation-delay: 5s;
+}
+
+.f6 {
+    left: 92%;
+    animation-delay: 11s;
+}
+
+
+@keyframes fallingPetal {
+
+    0% {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: .75;
+    }
+
+    100% {
+
+        transform:
+            translateY(110vh)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =====================================================
+   SPARKLES
+===================================================== */
 
 .sparkle {
 
     position: absolute;
 
-    font-size: 22px;
+    font-size: 20px;
 
-    animation: sparkle 3s infinite;
+    animation:
+        sparkle 8s ease-in-out infinite;
 }
 
+
 .sp1 {
-    left: 12%;
-    top: 50%;
+    left: 16%;
+    top: 48%;
 }
 
 .sp2 {
-    right: 12%;
+    right: 17%;
     top: 50%;
-    animation-delay: 1s;
+    animation-delay: 2s;
 }
 
 .sp3 {
-    right: 25%;
-    top: 30%;
-    animation-delay: 2s;
+    left: 75%;
+    top: 32%;
+    animation-delay: 4s;
 }
+
 
 @keyframes sparkle {
 
     0%,100% {
+
         opacity: .2;
-        transform: scale(.6);
+
+        transform:
+            scale(.7);
     }
 
     50% {
+
         opacity: 1;
-        transform: scale(1.5);
+
+        transform:
+            scale(1.25);
     }
 }
 
-/* ================= TEXT ================= */
+
+/* =====================================================
+   MESSAGE
+===================================================== */
 
 .message {
 
     position: absolute;
 
     left: 0;
-    bottom: 5%;
+
+    bottom: 3%;
 
     width: 100%;
 
+    padding:
+        0 18px;
+
     text-align: center;
 
-    padding: 0 15px;
-
-    animation: messageIn 3s ease forwards;
+    animation:
+        messageAppear 5s ease forwards;
 
     opacity: 0;
 }
 
+
+@keyframes messageAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =====================================================
+   NAME
+===================================================== */
+
 .name {
 
-    font-size: 32px;
+    font-size: 34px;
 
     font-weight: bold;
 
-    color: #ffd6e5;
+    color: #fff0f6;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 3px;
 
     text-shadow:
-        0 0 10px rgba(255,100,160,.8),
-        0 0 25px rgba(255,70,140,.5);
 
-    margin-bottom: 10px;
+        0 0 10px rgba(255,180,210,.8),
+        0 0 25px rgba(255,100,170,.45);
+
+    animation:
+        nameGlow 8s ease-in-out infinite;
 }
 
-.urdu {
 
-    font-size: 24px;
+@keyframes nameGlow {
 
-    line-height: 1.8;
+    0%,100% {
+
+        transform:
+            scale(1);
+
+        text-shadow:
+
+            0 0 10px rgba(255,180,210,.7),
+            0 0 22px rgba(255,100,170,.35);
+    }
+
+    50% {
+
+        transform:
+            scale(1.025);
+
+        text-shadow:
+
+            0 0 18px rgba(255,220,235,1),
+            0 0 35px rgba(255,100,170,.5);
+    }
+}
+
+
+/* =====================================================
+   LITTLE LINE
+===================================================== */
+
+.little-line {
+
+    font-size: 14px;
+
+    font-style: italic;
+
+    color: #f9dce9;
+
+    opacity: .8;
+
+    margin-bottom: 7px;
+}
+
+
+/* =====================================================
+   URDU POETRY
+===================================================== */
+
+.poetry {
 
     direction: rtl;
 
-    color: #fff;
+    font-size: 21px;
+
+    line-height: 1.85;
+
+    color: #fffafd;
+
+    max-width: 1050px;
+
+    margin: 0 auto;
+
+    text-align: center;
 
     text-shadow:
-        0 0 12px rgba(255,255,255,.35);
+
+        0 0 8px rgba(255,255,255,.25),
+        0 0 18px rgba(255,170,205,.25);
+
+    animation:
+        poetryFloat 10s ease-in-out infinite;
 }
+
+
+@keyframes poetryFloat {
+
+    0%,100% {
+
+        transform:
+            translateY(0);
+
+        opacity: .88;
+    }
+
+    50% {
+
+        transform:
+            translateY(-4px);
+
+        opacity: 1;
+    }
+}
+
+
+/* =====================================================
+   ENGLISH
+===================================================== */
 
 .english {
 
-    margin-top: 8px;
+    margin-top: 7px;
 
-    font-size: 16px;
+    font-size: 15px;
 
     font-style: italic;
+
+    color: #f7dfe8;
 
     opacity: .85;
 }
 
-@keyframes messageIn {
 
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ================= MOBILE ================= */
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media (max-width: 600px) {
+
+    .questionName {
+        font-size: 28px;
+    }
+
+    .question {
+        font-size: 23px;
+    }
+
+    .questionFlower {
+        font-size: 45px;
+    }
+
+    .loveButton {
+        font-size: 16px;
+        padding: 12px 22px;
+    }
 
     .moon {
         width: 55px;
@@ -596,118 +1358,334 @@ body {
     }
 
     .flower {
-        transform: translate(-50%, -50%) scale(.78);
+        transform:
+            translate(-50%, -50%)
+            scale(.70);
     }
 
     .name {
         font-size: 25px;
     }
 
-    .urdu {
-        font-size: 19px;
+    .little-line {
+        font-size: 11px;
+    }
+
+    .poetry {
+        font-size: 16px;
+        line-height: 1.65;
     }
 
     .english {
-        font-size: 14px;
+        font-size: 12px;
     }
 
-    .rose {
-        font-size: 38px;
+    .red-rose {
+        font-size: 35px;
     }
+
+    .peony {
+        font-size: 30px;
+    }
+
 }
 
 </style>
+
 </head>
+
 
 <body>
 
-<div class="scene">
 
-    <!-- STARS -->
+<!-- =====================================================
+     QUESTION SCREEN
+===================================================== -->
 
-    <div class="star s1"></div>
-    <div class="star s2"></div>
-    <div class="star s3"></div>
-    <div class="star s4"></div>
-    <div class="star s5"></div>
-    <div class="star s6"></div>
-    <div class="star s7"></div>
-    <div class="star s8"></div>
-    <div class="star s9"></div>
-    <div class="star s10"></div>
+<div id="questionScreen">
 
-    <!-- MOON -->
+    <div class="questionBox">
 
-    <div class="moon"></div>
+        <div class="questionFlower">
+            🌸❤️🌹
+        </div>
 
-    <!-- MAIN FLOWER -->
+        <div class="questionSmall">
+            I have a little question for you...
+        </div>
 
-    <div class="flower">
-
-        <div class="stem"></div>
-
-        <div class="leaf left"></div>
-        <div class="leaf right"></div>
-
-        <div class="petal p1"></div>
-        <div class="petal p2"></div>
-        <div class="petal p3"></div>
-        <div class="petal p4"></div>
-        <div class="petal p5"></div>
-
-        <div class="center"></div>
-
-    </div>
-
-    <!-- ROSES / GULAB -->
-
-    <div class="rose rose1">🌹</div>
-    <div class="rose rose2">🌹</div>
-    <div class="rose rose3">🌹</div>
-    <div class="rose rose4">🌹</div>
-
-    <!-- FALLING ROSE PETALS -->
-
-    <div class="fallingPetal fp1">🌹</div>
-    <div class="fallingPetal fp2">🌸</div>
-    <div class="fallingPetal fp3">🌹</div>
-    <div class="fallingPetal fp4">🌸</div>
-    <div class="fallingPetal fp5">🌹</div>
-
-    <!-- FLOATING HEARTS -->
-
-    <div class="heart h1">❤️</div>
-    <div class="heart h2">💕</div>
-    <div class="heart h3">❤️</div>
-    <div class="heart h4">💗</div>
-
-    <!-- SPARKLES -->
-
-    <div class="sparkle sp1">✨</div>
-    <div class="sparkle sp2">✨</div>
-    <div class="sparkle sp3">⭐</div>
-
-    <!-- MESSAGE -->
-
-    <div class="message">
-
-        <div class="name">
+        <div class="questionName">
             Eman Nasir ❤️
         </div>
 
-        <div class="urdu">
-            تیری مسکراہٹ سے مہک اٹھتا ہے دل،
-            جیسے گلِ گلاب سے مہک اٹھے چمن۔ 🌹
+        <div class="question">
+
+            Do you love me? 🥺❤️
+
         </div>
 
-        <div class="english">
-            A little flower for you,you are an amazing person , a dream… because you deserve
-            all the beautiful things in this world. ❤️
+        <div class="buttons">
+
+            <button
+                class="loveButton"
+                onclick="openGarden()">
+
+                YES ❤️
+
+            </button>
+
+
+            <button
+                class="loveButton"
+                onclick="openGarden()">
+
+                YES, obviously 😌❤️
+
+            </button>
+
         </div>
 
     </div>
 
 </div>
 
+
+<!-- =====================================================
+     ROMANTIC GARDEN
+===================================================== -->
+
+<div id="garden">
+
+
+<!-- STARS -->
+
+<div class="star s1"></div>
+<div class="star s2"></div>
+<div class="star s3"></div>
+<div class="star s4"></div>
+<div class="star s5"></div>
+<div class="star s6"></div>
+<div class="star s7"></div>
+<div class="star s8"></div>
+<div class="star s9"></div>
+<div class="star s10"></div>
+<div class="star s11"></div>
+<div class="star s12"></div>
+
+
+<!-- MOON -->
+
+<div class="moon"></div>
+
+
+<!-- MAIN FLOWER -->
+
+<div class="flower">
+
+    <div class="stem"></div>
+
+    <div class="leaf left"></div>
+
+    <div class="leaf right"></div>
+
+    <div class="petal p1"></div>
+    <div class="petal p2"></div>
+    <div class="petal p3"></div>
+    <div class="petal p4"></div>
+    <div class="petal p5"></div>
+
+    <!-- WHITE PEONY -->
+
+    <div class="center"></div>
+
+</div>
+
+
+<!-- RED ROSES -->
+
+<div class="red-rose rose1">🌹</div>
+<div class="red-rose rose2">🌹</div>
+<div class="red-rose rose3">🌹</div>
+<div class="red-rose rose4">🌹</div>
+
+
+<!-- PINK / WHITE FLOWERS -->
+
+<div class="peony peony1">🌸</div>
+<div class="peony peony2">🌸</div>
+
+<div class="peony peony3">🤍🌸</div>
+<div class="peony peony4">🌸🤍</div>
+
+
+<!-- FLOATING HEARTS -->
+
+<div class="heart h1">❤️</div>
+<div class="heart h2">💕</div>
+<div class="heart h3">❤️</div>
+<div class="heart h4">💗</div>
+<div class="heart h5">💖</div>
+
+
+<!-- FALLING PETALS -->
+
+<div class="falling f1">🌸</div>
+<div class="falling f2">🌹</div>
+<div class="falling f3">🌸</div>
+<div class="falling f4">🌹</div>
+<div class="falling f5">🌸</div>
+<div class="falling f6">🌹</div>
+
+
+<!-- SPARKLES -->
+
+<div class="sparkle sp1">✨</div>
+<div class="sparkle sp2">✨</div>
+<div class="sparkle sp3">⭐</div>
+
+
+<!-- GROUND -->
+
+<div class="ground"></div>
+
+
+<!-- MESSAGE -->
+
+<div class="message">
+
+    <div class="name">
+        ✨ Eman Nasir ✨
+    </div>
+
+
+    <div class="little-line">
+        for the one who makes ordinary moments beautiful 🤍
+    </div>
+
+
+    <div class="poetry">
+
+        تیری مسکراہٹ سے مہک اٹھتا ہے دل،
+        جیسے گلِ گلاب سے مہک اٹھے چمن۔ 🌹
+
+        <br>
+
+        تیری آنکھوں میں جو ٹھہر جائے،
+        وہ لمحہ پھر گزرنے کو دل نہ کرے۔ ✨
+
+        <br>
+
+        تو پھولوں جیسی نہیں،
+        پھول تو تیرے حسن کی بس ایک مثال ہیں۔ 🌸
+
+        <br>
+
+        تیرے نام سے دل میں اک نرمی سی اتر آتی ہے،
+        جیسے بہار خاموشی سے کسی گلشن میں آ جائے۔ 🤍
+
+        <br>
+
+        تیری موجودگی ہی کافی ہے،
+        کہ عام سا لمحہ بھی خاص بن جائے۔ 💕
+
+        <br>
+
+        اور اگر محبت ایک خوبصورت دعا ہے،
+        تو میری ہر دعا میں تیرا نام ہو۔ ❤️
+
+    </div>
+
+
+    <div class="english">
+
+        A little garden for you, Eman...
+        because some people deserve more than just a flower. 🌹❤️
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+function openGarden() {
+
+    const questionScreen =
+        document.getElementById("questionScreen");
+
+    const garden =
+        document.getElementById("garden");
+
+
+    /* Show garden */
+
+    garden.classList.add("show");
+
+
+    /* Slowly hide question */
+
+    setTimeout(function() {
+
+        questionScreen.classList.add("hide");
+
+    }, 500);
+
+
+    /* Small celebration */
+
+    createExtraHearts();
+
+}
+
+
+/* =====================================================
+   EXTRA HEARTS AFTER YES
+===================================================== */
+
+function createExtraHearts() {
+
+    for (let i = 0; i < 12; i++) {
+
+        const heart =
+            document.createElement("div");
+
+        heart.innerHTML = "❤️";
+
+        heart.style.position = "absolute";
+
+        heart.style.left =
+            Math.random() * 100 + "%";
+
+        heart.style.bottom = "5%";
+
+        heart.style.fontSize =
+            (15 + Math.random() * 20) + "px";
+
+        heart.style.zIndex = "50";
+
+        heart.style.pointerEvents = "none";
+
+        heart.style.animation =
+            "heartRise 8s linear forwards";
+
+        heart.style.animationDelay =
+            (i * 0.2) + "s";
+
+        garden.appendChild(heart);
+    }
+
+}
+
+</script>
+
+
 </body>
+
 </html>
