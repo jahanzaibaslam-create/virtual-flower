@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>A Flower For You 🌸</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(#17152b, #382b58);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        .scene {
+            position: relative;
+            width: 400px;
+            height: 600px;
+        }
+
+        .stem {
+            position: absolute;
+            width: 10px;
+            height: 0;
+            background: #4caf50;
+            bottom: 80px;
+            left: 195px;
+            border-radius: 10px;
+
+            animation: growStem 2s forwards;
+        }
+
+        @keyframes growStem {
+            from {
+                height: 0;
+            }
+
+            to {
+                height: 300px;
+            }
+        }
+
+        .flower {
+            position: absolute;
+            left: 200px;
+            bottom: 370px;
+            transform: scale(0);
+
+            animation: bloom 1.5s 2s forwards;
+        }
+
+        @keyframes bloom {
+            0% {
+                transform: scale(0) rotate(0deg);
+            }
+
+            70% {
+                transform: scale(1.2) rotate(10deg);
+            }
+
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        .petal {
+            position: absolute;
+            width: 70px;
+            height: 100px;
+            background: #ff69b4;
+            border-radius: 50% 50% 45% 45%;
+            transform-origin: bottom center;
+        }
+
+        .p1 { transform: translate(-35px,-90px) rotate(0deg); }
+        .p2 { transform: translate(10px,-65px) rotate(72deg); }
+        .p3 { transform: translate(-5px,0px) rotate(144deg); }
+        .p4 { transform: translate(-65px,0px) rotate(216deg); }
+        .p5 { transform: translate(-80px,-65px) rotate(288deg); }
+
+        .center {
+            position: absolute;
+            width: 65px;
+            height: 65px;
+            background: #ffd54f;
+            border-radius: 50%;
+            left: -32px;
+            top: -32px;
+        }
+
+        .message {
+            position: absolute;
+            width: 100%;
+            bottom: 10px;
+            text-align: center;
+            color: white;
+            font-size: 28px;
+            opacity: 0;
+
+            animation: showMessage 2s 3.5s forwards;
+        }
+
+        @keyframes showMessage {
+            to {
+                opacity: 1;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="scene">
+
+    <div class="stem"></div>
+
+    <div class="flower">
+        <div class="petal p1"></div>
+        <div class="petal p2"></div>
+        <div class="petal p3"></div>
+        <div class="petal p4"></div>
+        <div class="petal p5"></div>
+
+        <div class="center"></div>
+    </div>
+
+    <div class="message">
+        A little flower for you 🌸❤️
+    </div>
+
+</div>
+
+</body>
+</html>
