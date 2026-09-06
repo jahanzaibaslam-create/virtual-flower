@@ -1,619 +1,405 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>A Rose For You 🌹</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌹 A Rose For You 🌹</title>
 
 <style>
-
-* {
-    box-sizing: border-box;
-}
-
-html,
-body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-
-    background:
-        radial-gradient(
-            circle at 50% 40%,
-            #442342,
-            #140c20 55%,
-            #04030a 100%
-        );
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-}
-
-#scene {
-    position: fixed;
-    inset: 0;
-}
-
-.title {
-
-    position: fixed;
-
-    top: 5%;
-
-    left: 0;
-
-    width: 100%;
-
-    text-align: center;
-
-    z-index: 20;
-
-    pointer-events: none;
-
-    color: white;
-
-    text-shadow:
-        0 0 15px rgba(255,120,180,.8),
-        0 0 35px rgba(255,40,130,.5);
-}
-
-.title h1 {
-
-    margin: 0;
-
-    font-size: 40px;
-}
-
-.title p {
-
-    margin-top: 8px;
-
-    color: #f4d7e4;
-
-    font-size: 15px;
-}
-
-.bottom {
-
-    position: fixed;
-
-    bottom: 4%;
-
-    left: 0;
-
-    width: 100%;
-
-    text-align: center;
-
-    z-index: 20;
-
-    pointer-events: none;
-
-    color: #ffeaf2;
-}
-
-.poetry {
-
-    direction: rtl;
-
-    font-size: 18px;
-
-    line-height: 1.75;
-
-    padding: 0 15px;
-
-    text-shadow:
-        0 0 10px rgba(255,150,200,.4);
-}
-
-.hint {
-
-    margin-top: 7px;
-
-    font-size: 12px;
-
-    opacity: .65;
-}
-
-@media(max-width:600px) {
-
-    .title h1 {
-        font-size: 27px;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
 
-    .title p {
-        font-size: 12px;
+    body {
+        overflow: hidden;
+        background:
+            radial-gradient(circle at 50% 70%, #32101e 0%, #12060d 45%, #020205 100%);
+        font-family: Georgia, serif;
+        color: white;
     }
 
-    .poetry {
+    #scene {
+        position: fixed;
+        inset: 0;
+    }
+
+    .message {
+        position: fixed;
+        top: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        z-index: 10;
+        width: 90%;
+        pointer-events: none;
+    }
+
+    .message h1 {
+        font-size: clamp(28px, 5vw, 55px);
+        font-weight: normal;
+        letter-spacing: 2px;
+        text-shadow: 0 0 20px rgba(255,100,150,.8);
+        opacity: 0;
+        animation: appear 2s ease forwards;
+        animation-delay: 10s;
+    }
+
+    .message p {
+        margin-top: 12px;
+        font-size: clamp(15px, 2vw, 22px);
+        opacity: 0;
+        animation: appear 2s ease forwards;
+        animation-delay: 12s;
+    }
+
+    @keyframes appear {
+        from {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .loading {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(255,255,255,.65);
         font-size: 14px;
+        z-index: 20;
+        letter-spacing: 2px;
     }
-
-}
-
 </style>
-
 </head>
 
 <body>
 
-
 <div id="scene"></div>
 
-
-<div class="title">
-
+<div class="message">
     <h1>🌹 A Rose For You 🌹</h1>
-
     <p>
-        Watch it bloom... ❤️
+        کچھ پھول وقت کے ساتھ مرجھا جاتے ہیں،
+        مگر کچھ یادیں ہمیشہ مہکتی رہتی ہیں۔
     </p>
-
 </div>
 
-
-<div class="bottom">
-
-    <div class="poetry">
-
-        تیری مسکراہٹ سے مہک اٹھتا ہے دل،
-        جیسے گلِ گلاب سے مہک اٹھے چمن۔ 🌹
-
-        <br>
-
-        تو پھولوں جیسی نہیں،
-        پھول تو تیرے حسن کی بس ایک مثال ہیں۔ ✨
-
-        <br>
-
-        اور اگر محبت ایک خوبصورت دعا ہے،
-        تو میری ہر دعا میں تیرا نام ہو۔ ❤️
-
-    </div>
-
-    <div class="hint">
-        Drag with your mouse or finger to rotate the rose 🌹
-    </div>
-
+<div class="loading" id="loading">
+    A rose is being created...
 </div>
-
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 
-
 <script>
 
-/* =====================================================
-   SCENE
-===================================================== */
+const scene = new THREE.Scene();
 
-const scene =
-    new THREE.Scene();
-
-
-/* =====================================================
-   CAMERA
-===================================================== */
-
-const camera =
-    new THREE.PerspectiveCamera(
-        45,
-        window.innerWidth /
-        window.innerHeight,
-        0.1,
-        100
-    );
-
-camera.position.set(
-    0,
-    2.2,
-    8
+const camera = new THREE.PerspectiveCamera(
+    45,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    100
 );
 
+camera.position.set(0, 1.8, 9);
 
-/* =====================================================
-   RENDERER
-===================================================== */
+const renderer = new THREE.WebGLRenderer({
+    antialias: true,
+    alpha: true
+});
 
-const renderer =
-    new THREE.WebGLRenderer({
-        antialias: true,
-        alpha: true
-    });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.shadowMap.enabled = true;
 
-renderer.setSize(
-    window.innerWidth,
-    window.innerHeight
-);
-
-renderer.setPixelRatio(
-    Math.min(
-        window.devicePixelRatio,
-        2
-    )
-);
-
-renderer.outputColorSpace =
-    THREE.SRGBColorSpace;
-
-document
-    .getElementById("scene")
-    .appendChild(
-        renderer.domElement
-    );
+document.getElementById("scene").appendChild(renderer.domElement);
 
 
-/* =====================================================
-   LIGHTS
-===================================================== */
+// =====================================================
+// LIGHTS
+// =====================================================
 
-scene.add(
-    new THREE.AmbientLight(
-        0xffffff,
-        1.5
-    )
-);
+const ambient = new THREE.AmbientLight(0xffb0c8, 1.3);
+scene.add(ambient);
 
+const mainLight = new THREE.PointLight(0xff477e, 5, 20);
+mainLight.position.set(3, 5, 4);
+scene.add(mainLight);
 
-const pinkLight =
-    new THREE.PointLight(
-        0xff3975,
-        18,
-        15
-    );
-
-pinkLight.position.set(
-    4,
-    5,
-    4
-);
-
-scene.add(pinkLight);
+const softLight = new THREE.PointLight(0xffd0dc, 3, 15);
+softLight.position.set(-3, 3, 2);
+scene.add(softLight);
 
 
-const whiteLight =
-    new THREE.PointLight(
-        0xffdce9,
-        10,
-        12
-    );
+// =====================================================
+// ROSE GROUP
+// =====================================================
 
-whiteLight.position.set(
-    -4,
-    4,
-    5
-);
-
-scene.add(whiteLight);
-
-
-/* =====================================================
-   MAIN ROSE GROUP
-===================================================== */
-
-const rose =
-    new THREE.Group();
+const rose = new THREE.Group();
+rose.position.y = -3.2;
 
 scene.add(rose);
 
-rose.position.y =
-    -0.4;
 
+// =====================================================
+// STEM
+// =====================================================
 
-/* =====================================================
-   STEM
-===================================================== */
+const stemHeight = 5.2;
 
-const stemGeometry =
-    new THREE.CylinderGeometry(
-        .08,
-        .12,
-        4.5,
-        24
-    );
+const stemGeometry = new THREE.CylinderGeometry(
+    0.075,
+    0.11,
+    stemHeight,
+    16
+);
 
-const stemMaterial =
-    new THREE.MeshStandardMaterial({
-        color: 0x176b35,
-        roughness: .7
-    });
+const stemMaterial = new THREE.MeshStandardMaterial({
+    color: 0x174d25,
+    roughness: 0.8
+});
 
-const stem =
-    new THREE.Mesh(
-        stemGeometry,
-        stemMaterial
-    );
+const stem = new THREE.Mesh(
+    stemGeometry,
+    stemMaterial
+);
 
-stem.position.y =
-    -1.0;
+stem.position.y = stemHeight / 2;
+stem.scale.y = 0.001;
 
 rose.add(stem);
 
 
-/* =====================================================
-   LEAVES
-===================================================== */
+// =====================================================
+// GROUND
+// =====================================================
 
-function createLeaf(
-    x,
-    y,
-    z,
-    rotation
-) {
+const groundGeometry = new THREE.CircleGeometry(4, 64);
 
-    const geometry =
-        new THREE.SphereGeometry(
-            1,
-            24,
-            16
-        );
+const groundMaterial = new THREE.MeshStandardMaterial({
+    color: 0x16070d,
+    transparent: true,
+    opacity: 0.8
+});
 
-    const material =
-        new THREE.MeshStandardMaterial({
-            color: 0x239447,
-            roughness: .65
-        });
+const ground = new THREE.Mesh(
+    groundGeometry,
+    groundMaterial
+);
 
-    const leaf =
-        new THREE.Mesh(
-            geometry,
-            material
-        );
+ground.rotation.x = -Math.PI / 2;
+ground.position.y = 0;
 
-    leaf.scale.set(
-        1.4,
-        .18,
-        .55
+rose.add(ground);
+
+
+// =====================================================
+// LEAVES
+// =====================================================
+
+const leaves = [];
+
+function createLeaf(side, height, rotation) {
+
+    const geometry = new THREE.SphereGeometry(
+        0.55,
+        20,
+        12
     );
+
+    const material = new THREE.MeshStandardMaterial({
+        color: 0x176b35,
+        roughness: 0.7
+    });
+
+    const leaf = new THREE.Mesh(
+        geometry,
+        material
+    );
+
+    leaf.scale.set(0.08, 0.35, 0.75);
 
     leaf.position.set(
-        x,
-        y,
-        z
+        side * 0.55,
+        height,
+        0
     );
 
-    leaf.rotation.z =
-        rotation;
+    leaf.rotation.z = rotation;
+    leaf.rotation.y = side * 0.5;
+
+    leaf.scale.set(0.001, 0.001, 0.001);
 
     rose.add(leaf);
+
+    leaves.push(leaf);
 }
 
-
-createLeaf(
-    -.5,
-    -1.3,
-    0,
-    -.55
-);
-
-createLeaf(
-    .5,
-    -1.8,
-    0,
-    .55
-);
+createLeaf(-1, 1.5, -0.7);
+createLeaf(1, 2.2, 0.7);
+createLeaf(-1, 3.0, -0.7);
+createLeaf(1, 3.7, 0.7);
 
 
-/* =====================================================
-   PETAL CREATOR
-===================================================== */
+// =====================================================
+// ROSE BUD
+// =====================================================
+
+const budGroup = new THREE.Group();
+
+budGroup.position.y = stemHeight + 0.1;
+
+rose.add(budGroup);
+
+
+// =====================================================
+// PETAL CREATION
+// =====================================================
 
 const petals = [];
 
-
 function createPetal(
     radius,
-    height,
     angle,
-    size,
-    color,
+    height,
+    scale,
     delay,
-    layer
+    tilt
 ) {
 
-    const geometry =
-        new THREE.SphereGeometry(
-            1,
-            24,
-            16
-        );
-
-    const material =
-        new THREE.MeshStandardMaterial({
-
-            color: color,
-
-            roughness: .38,
-
-            metalness: .02,
-
-            side: THREE.DoubleSide
-        });
-
-    const petal =
-        new THREE.Mesh(
-            geometry,
-            material
-        );
-
-
-    /*
-       Make the sphere look like
-       a large curved petal.
-    */
-
-    petal.scale.set(
-        size,
-        .18,
-        size * .72
+    const geometry = new THREE.SphereGeometry(
+        0.8,
+        24,
+        18
     );
 
-
-    /*
-       Start petals inside the flower.
-    */
-
-    petal.position.set(
-        0,
-        1.25,
-        0
-    );
-
-
-    petal.rotation.y =
-        angle;
-
-
-    petal.rotation.x =
-        .25;
-
-
-    rose.add(petal);
-
-
-    petals.push({
-
-        mesh: petal,
-
-        radius: radius,
-
-        height: height,
-
-        angle: angle,
-
-        size: size,
-
-        delay: delay,
-
-        layer: layer,
-
-        opened: false
-
+    const material = new THREE.MeshPhysicalMaterial({
+        color: 0xb5123c,
+        roughness: 0.45,
+        metalness: 0.05,
+        clearcoat: 0.4,
+        clearcoatRoughness: 0.3,
+        side: THREE.DoubleSide
     });
 
-}
-
-
-/* =====================================================
-   OUTER PETALS
-===================================================== */
-
-const outerCount = 16;
-
-
-for (
-    let i = 0;
-    i < outerCount;
-    i++
-) {
-
-    const angle =
-        i *
-        Math.PI * 2 /
-        outerCount;
-
-
-    createPetal(
-        1.12,
-        1.35,
-        angle,
-        .95,
-        0xc91445,
-        i * .08,
-        0
+    const petal = new THREE.Mesh(
+        geometry,
+        material
     );
 
-}
-
-
-/* =====================================================
-   SECOND LAYER
-===================================================== */
-
-const secondCount = 14;
-
-
-for (
-    let i = 0;
-    i < secondCount;
-    i++
-) {
-
-    const angle =
-        i *
-        Math.PI * 2 /
-        secondCount
-        + .18;
-
-
-    createPetal(
-        .82,
-        1.58,
-        angle,
-        .78,
-        0xed255b,
-        1.5 + i * .08,
-        1
+    petal.position.set(
+        Math.cos(angle) * radius,
+        height,
+        Math.sin(angle) * radius
     );
 
-}
-
-
-/* =====================================================
-   INNER PETALS
-===================================================== */
-
-const innerCount = 11;
-
-
-for (
-    let i = 0;
-    i < innerCount;
-    i++
-) {
-
-    const angle =
-        i *
-        Math.PI * 2 /
-        innerCount;
-
-
-    createPetal(
-        .52,
-        1.80,
-        angle,
-        .62,
-        0xff4776,
-        2.8 + i * .1,
-        2
+    petal.scale.set(
+        0.001,
+        0.001,
+        0.001
     );
 
+    petal.rotation.y = angle;
+    petal.rotation.x = tilt;
+
+    budGroup.add(petal);
+
+    petals.push({
+        mesh: petal,
+        radius,
+        angle,
+        height,
+        scale,
+        delay,
+        tilt
+    });
 }
 
 
-/* =====================================================
-   CENTER
-===================================================== */
+// =====================================================
+// OUTER PETALS
+// =====================================================
+
+const outerCount = 14;
+
+for(let i = 0; i < outerCount; i++) {
+
+    const angle =
+        (i / outerCount) * Math.PI * 2;
+
+    createPetal(
+        0.48,
+        angle,
+        0,
+        1.05,
+        4.5 + i * 0.22,
+        0.55
+    );
+}
+
+
+// =====================================================
+// SECOND PETAL LAYER
+// =====================================================
+
+const secondCount = 12;
+
+for(let i = 0; i < secondCount; i++) {
+
+    const angle =
+        (i / secondCount) * Math.PI * 2
+        + 0.2;
+
+    createPetal(
+        0.32,
+        angle,
+        0.18,
+        0.88,
+        7.5 + i * 0.18,
+        0.38
+    );
+}
+
+
+// =====================================================
+// INNER PETALS
+// =====================================================
+
+const innerCount = 9;
+
+for(let i = 0; i < innerCount; i++) {
+
+    const angle =
+        (i / innerCount) * Math.PI * 2;
+
+    createPetal(
+        0.16,
+        angle,
+        0.36,
+        0.68,
+        9.2 + i * 0.15,
+        0.22
+    );
+}
+
+
+// =====================================================
+// CENTER
+// =====================================================
 
 const centerGeometry =
-    new THREE.SphereGeometry(
-        .28,
-        24,
-        24
-    );
+    new THREE.SphereGeometry(0.18, 20, 20);
 
 const centerMaterial =
     new THREE.MeshStandardMaterial({
-        color: 0x7a0625,
-        roughness: .35
+        color: 0x7d0928,
+        roughness: 0.5
     });
 
 const center =
@@ -622,153 +408,115 @@ const center =
         centerMaterial
     );
 
-center.position.y =
-    1.95;
+center.scale.set(0.001,0.001,0.001);
 
-rose.add(center);
+center.position.y = 0.48;
+
+budGroup.add(center);
 
 
-/* =====================================================
-   SMALL CENTER SPIRAL
-===================================================== */
+// =====================================================
+// FLOATING HEARTS
+// =====================================================
 
-for (
-    let i = 0;
-    i < 9;
-    i++
-) {
+const hearts = [];
 
-    const angle =
-        i * .65;
+function heartShape() {
 
-    const radius =
-        .25 -
-        i * .018;
+    const shape = new THREE.Shape();
 
-    const dot =
+    shape.moveTo(0, 0);
+
+    shape.bezierCurveTo(
+        -0.5, 0.5,
+        -1, -0.1,
+        0, -0.8
+    );
+
+    shape.bezierCurveTo(
+        1, -0.1,
+        0.5, 0.5,
+        0, 0
+    );
+
+    return shape;
+}
+
+function createHeart() {
+
+    const geometry =
+        new THREE.ShapeGeometry(heartShape());
+
+    const material =
+        new THREE.MeshBasicMaterial({
+            color: 0xff477e,
+            transparent: true,
+            opacity: 0.7,
+            side: THREE.DoubleSide
+        });
+
+    const heart =
         new THREE.Mesh(
-
-            new THREE.SphereGeometry(
-                .055,
-                12,
-                12
-            ),
-
-            new THREE.MeshStandardMaterial({
-                color: 0xff6c91
-            })
-
+            geometry,
+            material
         );
 
-
-    dot.position.set(
-
-        Math.cos(angle) *
-        radius,
-
-        2.02 +
-        i * .025,
-
-        Math.sin(angle) *
-        radius
-
+    heart.position.set(
+        (Math.random()-0.5)*8,
+        -2 + Math.random()*5,
+        (Math.random()-0.5)*3
     );
 
+    heart.scale.setScalar(
+        0.04 + Math.random()*0.08
+    );
 
-    rose.add(dot);
+    scene.add(heart);
 
+    hearts.push({
+        mesh: heart,
+        speed: 0.002 + Math.random()*0.004
+    });
+}
+
+for(let i=0; i<18; i++) {
+    createHeart();
 }
 
 
-/* =====================================================
-   GLOW
-===================================================== */
-
-const glow =
-    new THREE.Mesh(
-
-        new THREE.SphereGeometry(
-            1.8,
-            32,
-            32
-        ),
-
-        new THREE.MeshBasicMaterial({
-
-            color: 0xff1760,
-
-            transparent: true,
-
-            opacity: .055,
-
-            depthWrite: false
-
-        })
-
-    );
-
-glow.position.y =
-    1.4;
-
-rose.add(glow);
-
-
-/* =====================================================
-   STARS
-===================================================== */
-
-const starPositions = [];
-
-for (
-    let i = 0;
-    i < 400;
-    i++
-) {
-
-    starPositions.push(
-
-        (Math.random() - .5) *
-        24,
-
-        Math.random() *
-        14 - 3,
-
-        (Math.random() - .5) *
-        24
-
-    );
-
-}
-
+// =====================================================
+// STARS
+// =====================================================
 
 const starGeometry =
     new THREE.BufferGeometry();
 
+const starPositions = [];
+
+for(let i=0; i<400; i++) {
+
+    starPositions.push(
+        (Math.random()-0.5)*20,
+        (Math.random()-0.5)*12,
+        -Math.random()*8
+    );
+}
+
 starGeometry.setAttribute(
-
     "position",
-
     new THREE.Float32BufferAttribute(
         starPositions,
         3
     )
-
 );
-
 
 const starMaterial =
     new THREE.PointsMaterial({
-
         color: 0xffffff,
-
-        size: .035,
-
+        size: 0.025,
         transparent: true,
-
-        opacity: .8
-
+        opacity: 0.7
     });
-
 
 const stars =
     new THREE.Points(
@@ -779,389 +527,316 @@ const stars =
 scene.add(stars);
 
 
-/* =====================================================
-   FLOATING HEARTS
-===================================================== */
+// =====================================================
+// ANIMATION CLOCK
+// =====================================================
 
-for (
-    let i = 0;
-    i < 18;
-    i++
-) {
-
-    const heart =
-        document.createElement(
-            "div"
-        );
-
-    heart.innerHTML =
-        ["❤️","💕","💗","✨"]
-        [
-            Math.floor(
-                Math.random() * 4
-            )
-        ];
-
-    heart.style.position =
-        "fixed";
-
-    heart.style.left =
-        Math.random() * 100 +
-        "%";
-
-    heart.style.bottom =
-        "-30px";
-
-    heart.style.fontSize =
-        12 +
-        Math.random() * 18 +
-        "px";
-
-    heart.style.pointerEvents =
-        "none";
-
-    heart.style.zIndex =
-        "5";
-
-    document.body.appendChild(
-        heart
-    );
+const clock = new THREE.Clock();
 
 
-    heart.animate(
+// =====================================================
+// SMOOTH STEP
+// =====================================================
 
-        [
+function easeOut(t) {
 
-            {
-                transform:
-                    "translateY(0) scale(.6)",
-
-                opacity: 0
-
-            },
-
-            {
-
-                transform:
-                    "translateY(-50vh) scale(1)",
-
-                opacity: .8
-
-            },
-
-            {
-
-                transform:
-                    "translateY(-110vh) scale(1.2)",
-
-                opacity: 0
-
-            }
-
-        ],
-
-        {
-
-            duration:
-                6500 +
-                Math.random() * 6000,
-
-            delay:
-                Math.random() * 5000,
-
-            iterations:
-                Infinity
-
-        }
-
-    );
-
+    return 1 - Math.pow(1-t, 3);
 }
 
 
-/* =====================================================
-   MOUSE / TOUCH ROTATION
-===================================================== */
-
-let dragging = false;
-
-let previousX = 0;
-
-let targetRotation = 0;
-
-let currentRotation = 0;
-
-
-renderer.domElement.addEventListener(
-    "pointerdown",
-    function(event) {
-
-        dragging = true;
-
-        previousX =
-            event.clientX;
-
-    }
-);
-
-
-window.addEventListener(
-    "pointerup",
-    function() {
-
-        dragging = false;
-
-    }
-);
-
-
-window.addEventListener(
-    "pointermove",
-    function(event) {
-
-        if (!dragging)
-            return;
-
-
-        const difference =
-            event.clientX -
-            previousX;
-
-
-        targetRotation +=
-            difference * .008;
-
-
-        previousX =
-            event.clientX;
-
-    }
-);
-
-
-/* =====================================================
-   ANIMATION
-===================================================== */
-
-const clock =
-    new THREE.Clock();
-
+// =====================================================
+// MAIN ANIMATION
+// =====================================================
 
 function animate() {
 
-    requestAnimationFrame(
-        animate
+    requestAnimationFrame(animate);
+
+    const elapsed = clock.getElapsedTime();
+
+    // -----------------------------------------------
+    // STEM GROWTH
+    // -----------------------------------------------
+
+    let stemProgress =
+        Math.min(elapsed / 4, 1);
+
+    stem.scale.y =
+        Math.max(0.001, easeOut(stemProgress));
+
+
+    // -----------------------------------------------
+    // LEAF GROWTH
+    // -----------------------------------------------
+
+    leaves.forEach((leaf, i) => {
+
+        const start = 3.0 + i * 0.7;
+
+        let p =
+            Math.min(
+                Math.max(
+                    (elapsed-start)/1.2,
+                    0
+                ),
+                1
+            );
+
+        p = easeOut(p);
+
+        leaf.scale.set(
+            p * 0.08,
+            p * 0.35,
+            p * 0.75
+        );
+    });
+
+
+    // -----------------------------------------------
+    // BUD APPEARS
+    // -----------------------------------------------
+
+    let budProgress =
+        Math.min(
+            Math.max((elapsed-3.8)/2,0),
+            1
+        );
+
+    budProgress = easeOut(budProgress);
+
+    budGroup.scale.setScalar(
+        budProgress
     );
 
 
-    const time =
-        clock.getElapsedTime();
+    // -----------------------------------------------
+    // PETAL BLOOM
+    // -----------------------------------------------
+
+    petals.forEach((p) => {
+
+        let progress =
+            Math.min(
+                Math.max(
+                    (elapsed-p.delay)/1.3,
+                    0
+                ),
+                1
+            );
+
+        progress = easeOut(progress);
+
+        const s =
+            p.scale * progress;
+
+        p.mesh.scale.set(
+            s,
+            s * 0.55,
+            s
+        );
 
 
-    /* --------------------------------
-       PETAL BLOOM
-    -------------------------------- */
+        // petals move outward while opening
+        const currentRadius =
+            p.radius * progress;
 
-    petals.forEach(
-        function(p, index) {
+        p.mesh.position.x =
+            Math.cos(p.angle) * currentRadius;
 
-            const elapsed =
-                time -
-                p.delay;
-
-
-            if (elapsed > 0) {
-
-                const progress =
-                    Math.min(
-                        elapsed / 2.0,
-                        1
-                    );
+        p.mesh.position.z =
+            Math.sin(p.angle) * currentRadius;
 
 
-                /*
-                   Smooth easing.
-                */
+        // petals unfold upward
+        p.mesh.rotation.x =
+            p.tilt * (1-progress);
 
-                const ease =
-                    1 -
-                    Math.pow(
-                        1 - progress,
-                        3
-                    );
+        p.mesh.rotation.y =
+            p.angle;
+    });
 
 
-                const breathing =
-                    1 +
-                    Math.sin(
-                        time * 1.4 +
-                        index
-                    ) * .035;
+    // -----------------------------------------------
+    // CENTER APPEARS
+    // -----------------------------------------------
 
+    let centerProgress =
+        Math.min(
+            Math.max((elapsed-10)/1,0),
+            1
+        );
 
-                p.mesh.position.x =
-                    Math.cos(
-                        p.angle
-                    ) *
-                    p.radius *
-                    ease;
+    centerProgress =
+        easeOut(centerProgress);
 
-
-                p.mesh.position.z =
-                    Math.sin(
-                        p.angle
-                    ) *
-                    p.radius *
-                    ease;
-
-
-                p.mesh.position.y =
-                    p.height +
-                    Math.sin(
-                        time * 1.3 +
-                        index
-                    ) * .025;
-
-
-                p.mesh.scale.x =
-                    p.size *
-                    breathing *
-                    ease;
-
-
-                p.mesh.scale.z =
-                    p.size *
-                    .72 *
-                    breathing *
-                    ease;
-
-
-                /*
-                   Petals gradually tilt outward.
-                */
-
-                p.mesh.rotation.x =
-                    .2 +
-                    ease *
-                    .45;
-
-
-                p.mesh.rotation.y =
-                    p.angle;
-
-            }
-
-        }
+    center.scale.setScalar(
+        centerProgress
     );
 
 
-    /* --------------------------------
-       ROSE ROTATION
-    -------------------------------- */
+    // -----------------------------------------------
+    // FINAL ROSE BREATHING
+    // -----------------------------------------------
 
-    currentRotation +=
-        (targetRotation -
-        currentRotation) *
-        .06;
+    if(elapsed > 11) {
 
+        const breathe =
+            1 + Math.sin(elapsed*1.5)*0.025;
 
-    rose.rotation.y =
-        currentRotation;
+        budGroup.scale.setScalar(
+            breathe
+        );
 
+        rose.rotation.y =
+            Math.sin(elapsed*0.35)*0.12;
 
-    /*
-       Very slow automatic movement.
-    */
-
-    if (!dragging) {
-
-        targetRotation +=
-            .0015;
-
+        rose.rotation.z =
+            Math.sin(elapsed*0.7)*0.015;
     }
 
 
-    /* --------------------------------
-       FLOATING
-    -------------------------------- */
+    // -----------------------------------------------
+    // MOVING LIGHT
+    // -----------------------------------------------
 
-    rose.position.y =
-        -.4 +
-        Math.sin(
-            time * .8
-        ) * .045;
+    mainLight.position.x =
+        Math.sin(elapsed*0.5)*4;
 
-
-    /* --------------------------------
-       GLOW
-    -------------------------------- */
-
-    glow.scale.setScalar(
-
-        1 +
-        Math.sin(
-            time * 2
-        ) * .06
-
-    );
+    mainLight.position.z =
+        Math.cos(elapsed*0.5)*4;
 
 
-    /* --------------------------------
-       LIGHT MOVEMENT
-    -------------------------------- */
+    // -----------------------------------------------
+    // HEARTS
+    // -----------------------------------------------
 
-    pinkLight.position.x =
-        Math.sin(time) * 4;
+    hearts.forEach(h => {
 
-    pinkLight.position.z =
-        Math.cos(time) * 4;
+        h.mesh.position.y += h.speed;
+
+        h.mesh.rotation.z += 0.003;
+
+        if(h.mesh.position.y > 5) {
+            h.mesh.position.y = -3;
+        }
+    });
 
 
-    /* --------------------------------
-       STARS
-    -------------------------------- */
+    // -----------------------------------------------
+    // STARS
+    // -----------------------------------------------
 
-    stars.rotation.y +=
-        .00015;
+    stars.rotation.y =
+        elapsed * 0.015;
 
 
     renderer.render(
         scene,
         camera
     );
-
 }
-
 
 animate();
 
 
-/* =====================================================
-   RESIZE
-===================================================== */
+// =====================================================
+// RESIZE
+// =====================================================
 
 window.addEventListener(
     "resize",
-    function() {
+    () => {
 
         camera.aspect =
             window.innerWidth /
             window.innerHeight;
 
-
         camera.updateProjectionMatrix();
-
 
         renderer.setSize(
             window.innerWidth,
             window.innerHeight
         );
-
     }
 );
+
+
+// =====================================================
+// MOUSE / TOUCH ROTATION
+// =====================================================
+
+let dragging = false;
+let previousX = 0;
+
+renderer.domElement.addEventListener(
+    "pointerdown",
+    e => {
+        dragging = true;
+        previousX = e.clientX;
+    }
+);
+
+renderer.domElement.addEventListener(
+    "pointerup",
+    () => {
+        dragging = false;
+    }
+);
+
+renderer.domElement.addEventListener(
+    "pointermove",
+    e => {
+
+        if(!dragging) return;
+
+        const movement =
+            e.clientX - previousX;
+
+        rose.rotation.y +=
+            movement * 0.008;
+
+        previousX = e.clientX;
+    }
+);
+
+
+// =====================================================
+// LOADING TEXT
+// =====================================================
+
+setTimeout(() => {
+
+    document.getElementById("loading")
+        .innerText =
+        "🌱 Growing...";
+
+}, 1000);
+
+setTimeout(() => {
+
+    document.getElementById("loading")
+        .innerText =
+        "🌿 Growing leaves...";
+
+}, 3500);
+
+setTimeout(() => {
+
+    document.getElementById("loading")
+        .innerText =
+        "🌹 Blooming...";
+
+}, 6000);
+
+setTimeout(() => {
+
+    document.getElementById("loading")
+        .innerText =
+        "❤️";
+
+}, 11000);
 
 </script>
 
 </body>
-
 </html>
