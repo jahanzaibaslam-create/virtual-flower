@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-<html lang="ur">
+<html lang="en">
 
 <head>
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>For Eman Nasir ❤️</title>
+<title>For Eman Nasir 😂❤️</title>
 
 <style>
 
-/* =====================================================
+/* =========================
    BASIC
-===================================================== */
+========================= */
 
 * {
     box-sizing: border-box;
@@ -28,38 +27,31 @@ body {
 }
 
 body {
-
     overflow: hidden;
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
+    font-family: Georgia, "Times New Roman", serif;
     background:
         radial-gradient(
-            circle at 50% 35%,
+            circle at 50% 40%,
             #493b68 0%,
-            #292344 35%,
-            #15182f 65%,
-            #070a16 100%
+            #292344 40%,
+            #101326 75%,
+            #050711 100%
         );
-
     color: white;
 }
 
 
-/* =====================================================
-   FIRST QUESTION SCREEN
-===================================================== */
+/* =========================
+   PRANK SCREEN
+========================= */
 
-#questionScreen {
+#prankScreen {
 
     position: fixed;
 
     inset: 0;
 
-    z-index: 100;
+    z-index: 1000;
 
     display: flex;
 
@@ -69,15 +61,11 @@ body {
 
     text-align: center;
 
-    padding: 25px;
-
     background:
-
         radial-gradient(
-            circle at 50% 40%,
-            #59456f 0%,
-            #2a2447 45%,
-            #0b0d1d 100%
+            circle at center,
+            #302744,
+            #0b0d19 75%
         );
 
     transition:
@@ -85,8 +73,7 @@ body {
         visibility 2s ease;
 }
 
-
-#questionScreen.hide {
+#prankScreen.hide {
 
     opacity: 0;
 
@@ -96,157 +83,200 @@ body {
 }
 
 
-.questionBox {
+.prankContent {
 
-    max-width: 650px;
+    position: relative;
 
-    padding: 35px 25px;
+    width: 100%;
 
-    animation:
-        questionFloat 7s ease-in-out infinite;
+    max-width: 700px;
+
+    padding: 30px;
+
 }
 
 
-.questionSmall {
+.prankTitle {
 
-    font-size: 18px;
+    font-size: 28px;
 
-    color: #f8dce8;
+    color: #ffe5ef;
+
+    margin-bottom: 10px;
+
+    animation:
+        titleFloat 5s ease-in-out infinite;
+}
+
+
+.prankName {
+
+    font-size: 40px;
+
+    font-weight: bold;
+
+    color: white;
+
+    text-shadow:
+        0 0 15px rgba(255,150,200,.7),
+        0 0 35px rgba(255,60,140,.4);
 
     margin-bottom: 15px;
 }
 
 
-.questionName {
+.prankText {
 
-    font-size: 36px;
+    font-size: 22px;
 
-    font-weight: bold;
+    color: #f5dce7;
 
-    color: #fff1f7;
-
-    text-shadow:
-
-        0 0 12px rgba(255,180,210,.8),
-        0 0 30px rgba(255,90,150,.4);
-
-    margin-bottom: 18px;
+    margin-bottom: 15px;
 }
 
 
-.question {
+/* =========================
+   MIDDLE FINGER
+========================= */
+
+.middleFinger {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 150px;
+
+    line-height: 1;
+
+    margin-top: 10px;
+
+    opacity: 0;
+
+    transform:
+        translateY(180px)
+        scale(.4);
+
+    animation:
+        fingerRise 2s cubic-bezier(.17,.67,.25,1.2)
+        1.5s forwards;
+
+    filter:
+        drop-shadow(
+            0 0 20px
+            rgba(255,100,150,.4)
+        );
+}
+
+
+.forYou {
 
     font-size: 30px;
 
-    line-height: 1.5;
+    font-weight: bold;
 
-    margin-bottom: 30px;
+    color: #ffb8d2;
 
-    color: white;
+    opacity: 0;
 
-    text-shadow:
-        0 0 15px rgba(255,255,255,.25);
-}
-
-
-.questionFlower {
-
-    font-size: 55px;
-
-    margin-bottom: 20px;
+    transform: translateY(20px);
 
     animation:
-        flowerPulse 5s ease-in-out infinite;
+        textAppear 1.5s ease
+        3.1s forwards;
+
+    text-shadow:
+        0 0 15px rgba(255,100,160,.6);
 }
 
 
-.buttons {
+.waitText {
 
-    display: flex;
+    margin-top: 18px;
 
-    justify-content: center;
+    font-size: 15px;
 
-    gap: 18px;
+    color: #d9c5d0;
 
-    flex-wrap: wrap;
+    opacity: 0;
+
+    animation:
+        textAppear 1.5s ease
+        4s forwards;
 }
 
 
-.loveButton {
+@keyframes fingerRise {
 
-    border: none;
+    0% {
 
-    padding:
-        14px 28px;
+        opacity: 0;
 
-    border-radius: 40px;
+        transform:
+            translateY(180px)
+            scale(.4)
+            rotate(-15deg);
+    }
 
-    font-size: 18px;
+    60% {
 
-    font-family: Georgia, serif;
+        opacity: 1;
 
-    cursor: pointer;
+        transform:
+            translateY(-20px)
+            scale(1.1)
+            rotate(5deg);
+    }
 
-    color: white;
+    100% {
 
-    background:
-        linear-gradient(
-            135deg,
-            #e85d91,
-            #a93672
-        );
+        opacity: 1;
 
-    box-shadow:
-        0 8px 25px rgba(180,40,100,.35);
-
-    transition:
-        transform .4s ease,
-        box-shadow .4s ease;
+        transform:
+            translateY(0)
+            scale(1)
+            rotate(0);
+    }
 }
 
 
-.loveButton:hover {
+@keyframes textAppear {
 
-    transform:
-        translateY(-4px)
-        scale(1.04);
+    from {
 
-    box-shadow:
-        0 12px 35px rgba(255,70,150,.45);
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
 }
 
 
-@keyframes questionFloat {
+@keyframes titleFloat {
 
     0%,100% {
+
         transform:
             translateY(0);
     }
 
     50% {
+
         transform:
-            translateY(-8px);
+            translateY(-6px);
     }
 }
 
 
-@keyframes flowerPulse {
-
-    0%,100% {
-        transform:
-            scale(1);
-    }
-
-    50% {
-        transform:
-            scale(1.08);
-    }
-}
-
-
-/* =====================================================
-   MAIN WEBSITE
-===================================================== */
+/* =========================
+   GARDEN
+========================= */
 
 #garden {
 
@@ -273,15 +303,16 @@ body {
 }
 
 
-/* =====================================================
+/* =========================
    STARS
-===================================================== */
+========================= */
 
 .star {
 
     position: absolute;
 
     width: 3px;
+
     height: 3px;
 
     border-radius: 50%;
@@ -293,7 +324,7 @@ body {
 }
 
 
-.s1  { left: 8%;  top: 13%; animation-delay: 0s; }
+.s1  { left: 8%;  top: 13%; }
 .s2  { left: 18%; top: 27%; animation-delay: 1s; }
 .s3  { left: 29%; top: 10%; animation-delay: 2s; }
 .s4  { left: 40%; top: 20%; animation-delay: 3s; }
@@ -310,35 +341,31 @@ body {
 @keyframes twinkle {
 
     0%,100% {
-
         opacity: .2;
-
-        transform:
-            scale(.7);
+        transform: scale(.7);
     }
 
     50% {
-
         opacity: 1;
-
-        transform:
-            scale(1.4);
+        transform: scale(1.4);
     }
 }
 
 
-/* =====================================================
+/* =========================
    MOON
-===================================================== */
+========================= */
 
 .moon {
 
     position: absolute;
 
     top: 7%;
+
     right: 10%;
 
     width: 75px;
+
     height: 75px;
 
     border-radius: 50%;
@@ -346,7 +373,6 @@ body {
     background: #fff6d5;
 
     box-shadow:
-
         0 0 20px #fff6d5,
         0 0 55px rgba(255,245,210,.45);
 
@@ -358,26 +384,22 @@ body {
 @keyframes moonGlow {
 
     0%,100% {
-
         box-shadow:
-
             0 0 20px #fff6d5,
             0 0 50px rgba(255,245,210,.35);
     }
 
     50% {
-
         box-shadow:
-
             0 0 30px #fff6d5,
             0 0 75px rgba(255,245,210,.55);
     }
 }
 
 
-/* =====================================================
+/* =========================
    GROUND
-===================================================== */
+========================= */
 
 .ground {
 
@@ -390,21 +412,17 @@ body {
     height: 18%;
 
     background:
-
         linear-gradient(
             to top,
             #020907,
             #071c14
         );
-
-    box-shadow:
-        0 -10px 40px rgba(50,130,90,.15);
 }
 
 
-/* =====================================================
+/* =========================
    MAIN FLOWER
-===================================================== */
+========================= */
 
 .flower {
 
@@ -429,14 +447,12 @@ body {
 @keyframes flowerSway {
 
     0%,100% {
-
         transform:
             translate(-50%, -50%)
             rotate(-1.5deg);
     }
 
     50% {
-
         transform:
             translate(-50%, -50%)
             rotate(1.5deg);
@@ -444,15 +460,16 @@ body {
 }
 
 
-/* =====================================================
+/* =========================
    STEM
-===================================================== */
+========================= */
 
 .stem {
 
     position: absolute;
 
     left: 114px;
+
     top: 105px;
 
     width: 12px;
@@ -462,7 +479,6 @@ body {
     border-radius: 20px;
 
     background:
-
         linear-gradient(
             to right,
             #15582f,
@@ -489,9 +505,9 @@ body {
 }
 
 
-/* =====================================================
-   PINK PETALS
-===================================================== */
+/* =========================
+   PETALS
+========================= */
 
 .petal {
 
@@ -508,7 +524,6 @@ body {
     border-radius: 50%;
 
     background:
-
         radial-gradient(
             circle at 35% 25%,
             #ffd5e3,
@@ -591,9 +606,9 @@ body {
 }
 
 
-/* =====================================================
+/* =========================
    WHITE PEONY CENTER
-===================================================== */
+========================= */
 
 .center {
 
@@ -612,7 +627,6 @@ body {
     z-index: 20;
 
     background:
-
         radial-gradient(
             circle at 50% 45%,
             #ffffff 0%,
@@ -623,7 +637,6 @@ body {
         );
 
     box-shadow:
-
         0 0 15px rgba(255,255,255,.95),
         0 0 35px rgba(255,215,232,.75),
         0 0 65px rgba(255,180,215,.4);
@@ -650,7 +663,6 @@ body {
     border-radius: 50%;
 
     background:
-
         radial-gradient(
             circle,
             #ffffff 0%,
@@ -696,29 +708,15 @@ body {
 @keyframes peonyBreath {
 
     0%,100% {
-
         transform:
             scale(1)
             rotate(-2deg);
-
-        box-shadow:
-
-            0 0 15px rgba(255,255,255,.95),
-            0 0 35px rgba(255,215,232,.75),
-            0 0 65px rgba(255,180,215,.4);
     }
 
     50% {
-
         transform:
             scale(1.08)
             rotate(2deg);
-
-        box-shadow:
-
-            0 0 22px rgba(255,255,255,1),
-            0 0 48px rgba(255,215,232,.9),
-            0 0 80px rgba(255,180,215,.55);
     }
 }
 
@@ -740,28 +738,18 @@ body {
 @keyframes tinyGlow {
 
     0%,100% {
-
         opacity: .55;
-
-        transform:
-            translate(-50%, -50%)
-            scale(.9);
     }
 
     50% {
-
         opacity: 1;
-
-        transform:
-            translate(-50%, -50%)
-            scale(1.15);
     }
 }
 
 
-/* =====================================================
+/* =========================
    LEAVES
-===================================================== */
+========================= */
 
 .leaf {
 
@@ -772,7 +760,6 @@ body {
     height: 34px;
 
     background:
-
         linear-gradient(
             135deg,
             #69d981,
@@ -806,9 +793,9 @@ body {
 }
 
 
-/* =====================================================
+/* =========================
    RED ROSES
-===================================================== */
+========================= */
 
 .red-rose {
 
@@ -830,7 +817,6 @@ body {
 .rose1 {
     left: 7%;
     bottom: 13%;
-    animation-delay: 1s;
 }
 
 
@@ -858,14 +844,12 @@ body {
 @keyframes roseFloat {
 
     0%,100% {
-
         transform:
             translateY(0)
             rotate(-2deg);
     }
 
     50% {
-
         transform:
             translateY(-10px)
             rotate(2deg);
@@ -873,21 +857,15 @@ body {
 }
 
 
-/* =====================================================
+/* =========================
    PEONIES
-===================================================== */
+========================= */
 
 .peony {
 
     position: absolute;
 
     font-size: 46px;
-
-    filter:
-        drop-shadow(
-            0 0 10px
-            rgba(255,190,220,.45)
-        );
 
     animation:
         peonyFloat 12s ease-in-out infinite;
@@ -897,7 +875,6 @@ body {
 .peony1 {
     left: 12%;
     top: 38%;
-    animation-delay: 2s;
 }
 
 
@@ -925,14 +902,12 @@ body {
 @keyframes peonyFloat {
 
     0%,100% {
-
         transform:
             translateY(0)
             rotate(-2deg);
     }
 
     50% {
-
         transform:
             translateY(-8px)
             rotate(2deg);
@@ -940,9 +915,9 @@ body {
 }
 
 
-/* =====================================================
+/* =========================
    HEARTS
-===================================================== */
+========================= */
 
 .heart {
 
@@ -988,7 +963,6 @@ body {
 @keyframes heartRise {
 
     0% {
-
         transform:
             translateY(0)
             scale(.5);
@@ -1005,7 +979,6 @@ body {
     }
 
     100% {
-
         transform:
             translateY(-105vh)
             scale(1.1);
@@ -1015,9 +988,9 @@ body {
 }
 
 
-/* =====================================================
+/* =========================
    FALLING PETALS
-===================================================== */
+========================= */
 
 .falling {
 
@@ -1068,7 +1041,6 @@ body {
 @keyframes fallingPetal {
 
     0% {
-
         transform:
             translateY(0)
             rotate(0deg);
@@ -1081,7 +1053,6 @@ body {
     }
 
     100% {
-
         transform:
             translateY(110vh)
             rotate(360deg);
@@ -1091,9 +1062,9 @@ body {
 }
 
 
-/* =====================================================
+/* =========================
    SPARKLES
-===================================================== */
+========================= */
 
 .sparkle {
 
@@ -1127,26 +1098,20 @@ body {
 @keyframes sparkle {
 
     0%,100% {
-
         opacity: .2;
-
-        transform:
-            scale(.7);
+        transform: scale(.7);
     }
 
     50% {
-
         opacity: 1;
-
-        transform:
-            scale(1.25);
+        transform: scale(1.25);
     }
 }
 
 
-/* =====================================================
+/* =========================
    MESSAGE
-===================================================== */
+========================= */
 
 .message {
 
@@ -1158,8 +1123,7 @@ body {
 
     width: 100%;
 
-    padding:
-        0 18px;
+    padding: 0 18px;
 
     text-align: center;
 
@@ -1173,26 +1137,18 @@ body {
 @keyframes messageAppear {
 
     from {
-
         opacity: 0;
-
         transform:
             translateY(25px);
     }
 
     to {
-
         opacity: 1;
-
         transform:
             translateY(0);
     }
 }
 
-
-/* =====================================================
-   NAME
-===================================================== */
 
 .name {
 
@@ -1202,49 +1158,13 @@ body {
 
     color: #fff0f6;
 
-    letter-spacing: 1px;
-
     margin-bottom: 3px;
 
     text-shadow:
-
         0 0 10px rgba(255,180,210,.8),
         0 0 25px rgba(255,100,170,.45);
-
-    animation:
-        nameGlow 8s ease-in-out infinite;
 }
 
-
-@keyframes nameGlow {
-
-    0%,100% {
-
-        transform:
-            scale(1);
-
-        text-shadow:
-
-            0 0 10px rgba(255,180,210,.7),
-            0 0 22px rgba(255,100,170,.35);
-    }
-
-    50% {
-
-        transform:
-            scale(1.025);
-
-        text-shadow:
-
-            0 0 18px rgba(255,220,235,1),
-            0 0 35px rgba(255,100,170,.5);
-    }
-}
-
-
-/* =====================================================
-   LITTLE LINE
-===================================================== */
 
 .little-line {
 
@@ -1260,10 +1180,6 @@ body {
 }
 
 
-/* =====================================================
-   URDU POETRY
-===================================================== */
-
 .poetry {
 
     direction: rtl;
@@ -1278,41 +1194,11 @@ body {
 
     margin: 0 auto;
 
-    text-align: center;
-
     text-shadow:
-
         0 0 8px rgba(255,255,255,.25),
         0 0 18px rgba(255,170,205,.25);
-
-    animation:
-        poetryFloat 10s ease-in-out infinite;
 }
 
-
-@keyframes poetryFloat {
-
-    0%,100% {
-
-        transform:
-            translateY(0);
-
-        opacity: .88;
-    }
-
-    50% {
-
-        transform:
-            translateY(-4px);
-
-        opacity: 1;
-    }
-}
-
-
-/* =====================================================
-   ENGLISH
-===================================================== */
 
 .english {
 
@@ -1328,33 +1214,35 @@ body {
 }
 
 
-/* =====================================================
+/* =========================
    MOBILE
-===================================================== */
+========================= */
 
 @media (max-width: 600px) {
 
-    .questionName {
-        font-size: 28px;
+    .prankTitle {
+        font-size: 22px;
     }
 
-    .question {
-        font-size: 23px;
+    .prankName {
+        font-size: 30px;
     }
 
-    .questionFlower {
-        font-size: 45px;
+    .prankText {
+        font-size: 18px;
     }
 
-    .loveButton {
-        font-size: 16px;
-        padding: 12px 22px;
+    .middleFinger {
+        font-size: 110px;
+    }
+
+    .forYou {
+        font-size: 24px;
     }
 
     .moon {
         width: 55px;
         height: 55px;
-        right: 7%;
     }
 
     .flower {
@@ -1365,10 +1253,6 @@ body {
 
     .name {
         font-size: 25px;
-    }
-
-    .little-line {
-        font-size: 11px;
     }
 
     .poetry {
@@ -1387,7 +1271,6 @@ body {
     .peony {
         font-size: 30px;
     }
-
 }
 
 </style>
@@ -1399,50 +1282,35 @@ body {
 
 
 <!-- =====================================================
-     QUESTION SCREEN
+     PRANK SCREEN
 ===================================================== -->
 
-<div id="questionScreen">
+<div id="prankScreen">
 
-    <div class="questionBox">
+    <div class="prankContent">
 
-        <div class="questionFlower">
-            🌸❤️🌹
+        <div class="prankTitle">
+            I made something special for you... 👀
         </div>
 
-        <div class="questionSmall">
-            I have a little question for you...
-        </div>
-
-        <div class="questionName">
+        <div class="prankName">
             Eman Nasir ❤️
         </div>
 
-        <div class="question">
-
-            Do you love me? 🥺❤️
-
+        <div class="prankText">
+            Please wait... I have a little surprise 😂
         </div>
 
-        <div class="buttons">
+        <div class="middleFinger">
+            🖕
+        </div>
 
-            <button
-                class="loveButton"
-                onclick="openGarden()">
+        <div class="forYou">
+            THIS IS FOR YOU 😂🖕
+        </div>
 
-                YES ❤️
-
-            </button>
-
-
-            <button
-                class="loveButton"
-                onclick="openGarden()">
-
-                YES, obviously 😌❤️
-
-            </button>
-
+        <div class="waitText">
+            Wait... wait... don't kill me yet 😭😂
         </div>
 
     </div>
@@ -1494,8 +1362,6 @@ body {
     <div class="petal p4"></div>
     <div class="petal p5"></div>
 
-    <!-- WHITE PEONY -->
-
     <div class="center"></div>
 
 </div>
@@ -1509,7 +1375,7 @@ body {
 <div class="red-rose rose4">🌹</div>
 
 
-<!-- PINK / WHITE FLOWERS -->
+<!-- PEONIES -->
 
 <div class="peony peony1">🌸</div>
 <div class="peony peony2">🌸</div>
@@ -1557,11 +1423,9 @@ body {
         ✨ Eman Nasir ✨
     </div>
 
-
     <div class="little-line">
-        for the one who makes ordinary moments beautiful 🤍
+        okay... THIS one is actually for you 🤍😂
     </div>
-
 
     <div class="poetry">
 
@@ -1595,11 +1459,11 @@ body {
 
     </div>
 
-
     <div class="english">
 
-        A little garden for you, Eman...
-        because some people deserve more than just a flower. 🌹❤️
+        Okay okay... I'm sorry 😂❤️
+        A little garden for you,
+        because you deserve more than just a flower. 🌹
 
     </div>
 
@@ -1609,79 +1473,81 @@ body {
 </div>
 
 
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
-
 <script>
 
-function openGarden() {
+/* =====================================================
+   SHOW ROMANTIC GARDEN
+===================================================== */
 
-    const questionScreen =
-        document.getElementById("questionScreen");
+/*
+   The prank stays for about 7 seconds.
+   Then the romantic garden appears.
+*/
+
+setTimeout(function() {
+
+    const prank =
+        document.getElementById("prankScreen");
 
     const garden =
         document.getElementById("garden");
 
-
-    /* Show garden */
-
     garden.classList.add("show");
-
-
-    /* Slowly hide question */
 
     setTimeout(function() {
 
-        questionScreen.classList.add("hide");
+        prank.classList.add("hide");
 
     }, 500);
 
-
-    /* Small celebration */
-
-    createExtraHearts();
-
-}
+}, 7000);
 
 
 /* =====================================================
-   EXTRA HEARTS AFTER YES
+   EXTRA HEARTS WHEN GARDEN OPENS
 ===================================================== */
 
-function createExtraHearts() {
+setTimeout(function() {
 
-    for (let i = 0; i < 12; i++) {
+    const garden =
+        document.getElementById("garden");
+
+    for (let i = 0; i < 15; i++) {
 
         const heart =
             document.createElement("div");
 
-        heart.innerHTML = "❤️";
+        heart.innerHTML =
+            ["❤️","💕","💗","💖"][Math.floor(Math.random() * 4)];
 
-        heart.style.position = "absolute";
+        heart.style.position =
+            "absolute";
 
         heart.style.left =
             Math.random() * 100 + "%";
 
-        heart.style.bottom = "5%";
+        heart.style.bottom =
+            "0%";
 
         heart.style.fontSize =
             (15 + Math.random() * 20) + "px";
 
-        heart.style.zIndex = "50";
+        heart.style.zIndex =
+            "50";
 
-        heart.style.pointerEvents = "none";
+        heart.style.pointerEvents =
+            "none";
 
         heart.style.animation =
-            "heartRise 8s linear forwards";
+            "heartRise 9s linear forwards";
 
         heart.style.animationDelay =
-            (i * 0.2) + "s";
+            (Math.random() * 3) + "s";
 
         garden.appendChild(heart);
     }
 
-}
+}, 7000);
 
 </script>
 
