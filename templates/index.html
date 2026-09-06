@@ -3,403 +3,827 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🌹 A Rose For You 🌹</title>
+
+<title>🌹 A Rose Among The Stars 🌌</title>
 
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    body {
-        overflow: hidden;
-        background:
-            radial-gradient(circle at 50% 70%, #32101e 0%, #12060d 45%, #020205 100%);
-        font-family: Georgia, serif;
-        color: white;
-    }
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #010105;
+    font-family: Georgia, "Times New Roman", serif;
+}
 
-    #scene {
-        position: fixed;
-        inset: 0;
-    }
+body {
+    position: relative;
+    color: white;
+}
 
-    .message {
-        position: fixed;
-        top: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
-        z-index: 10;
-        width: 90%;
-        pointer-events: none;
-    }
+#space {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 50%,
+        #170008 0%,
+        #060009 45%,
+        #010105 100%);
+}
 
-    .message h1 {
-        font-size: clamp(28px, 5vw, 55px);
-        font-weight: normal;
-        letter-spacing: 2px;
-        text-shadow: 0 0 20px rgba(255,100,150,.8);
+.star {
+    position: absolute;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 0 8px white;
+    animation: twinkle linear infinite;
+}
+
+.star.red {
+    background: #ff1744;
+    box-shadow: 0 0 10px #ff1744;
+}
+
+.star.blue {
+    background: #55caff;
+    box-shadow: 0 0 10px #55caff;
+}
+
+.star.pink {
+    background: #ff72bb;
+    box-shadow: 0 0 10px #ff72bb;
+}
+
+@keyframes twinkle {
+    0%,100% {
+        opacity: .15;
+        transform: scale(.6);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+}
+
+.moon {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    right: 9%;
+    top: 10%;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 35% 30%,
+        #fff,
+        #ddd 45%,
+        #888 100%);
+    box-shadow:
+        0 0 20px white,
+        0 0 50px rgba(255,255,255,.4);
+    animation: moonFloat 8s ease-in-out infinite;
+}
+
+@keyframes moonFloat {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-18px); }
+}
+
+.planet {
+    position: absolute;
+    border-radius: 50%;
+    animation: planetFloat ease-in-out infinite;
+}
+
+.planet1 {
+    width: 80px;
+    height: 80px;
+    left: 8%;
+    top: 20%;
+    background:
+        radial-gradient(circle at 30% 25%,
+        #ff8cff,
+        #7b21a8 45%,
+        #23002f 100%);
+    box-shadow: 0 0 30px rgba(200,50,255,.7);
+    animation-duration: 9s;
+}
+
+.planet2 {
+    width: 60px;
+    height: 60px;
+    right: 17%;
+    bottom: 18%;
+    background:
+        radial-gradient(circle at 30% 25%,
+        #ffcc80,
+        #ff5722 50%,
+        #5c1200 100%);
+    box-shadow: 0 0 30px rgba(255,100,30,.6);
+    animation-duration: 11s;
+}
+
+.planet3 {
+    width: 42px;
+    height: 42px;
+    left: 20%;
+    bottom: 18%;
+    background:
+        radial-gradient(circle at 30% 25%,
+        #9eeaff,
+        #1976d2 50%,
+        #001c45 100%);
+    box-shadow: 0 0 25px rgba(50,150,255,.6);
+    animation-duration: 7s;
+}
+
+@keyframes planetFloat {
+    0%,100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-25px) rotate(15deg);
+    }
+}
+
+.ring {
+    position: absolute;
+    width: 150%;
+    height: 35%;
+    left: -25%;
+    top: 32%;
+    border: 3px solid rgba(255,190,100,.7);
+    border-radius: 50%;
+    transform: rotate(-18deg);
+}
+
+.title {
+    position: fixed;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    width: 95%;
+    text-align: center;
+    font-size: clamp(22px,4vw,42px);
+    letter-spacing: 2px;
+    text-shadow:
+        0 0 8px #ff0033,
+        0 0 25px #ff0033,
+        0 0 50px #ff0033;
+}
+
+.subtitle {
+    position: fixed;
+    top: 78px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    width: 90%;
+    text-align: center;
+    color: #ffc5d0;
+    font-size: clamp(14px,2vw,19px);
+    text-shadow: 0 0 10px #ff1744;
+}
+
+#canvas-container {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    cursor: grab;
+}
+
+#canvas-container:active {
+    cursor: grabbing;
+}
+
+canvas {
+    display: block;
+}
+
+.message {
+    position: fixed;
+    left: 50%;
+    bottom: 35px;
+    transform: translateX(-50%);
+    z-index: 30;
+    width: 90%;
+    max-width: 750px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 3s ease, transform 3s ease;
+    pointer-events: none;
+}
+
+.message.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px);
+}
+
+.message .english {
+    font-size: clamp(18px,3vw,28px);
+    text-shadow:
+        0 0 10px #ff0033,
+        0 0 25px #ff0033;
+}
+
+.message .urdu {
+    margin-top: 10px;
+    font-size: clamp(18px,3vw,27px);
+    direction: rtl;
+    color: #ffb6c5;
+    text-shadow: 0 0 15px #ff1744;
+}
+
+.hint {
+    position: fixed;
+    left: 50%;
+    bottom: 10px;
+    transform: translateX(-50%);
+    z-index: 30;
+    font-family: Arial,sans-serif;
+    font-size: 11px;
+    color: rgba(255,255,255,.5);
+    letter-spacing: 1px;
+}
+
+.heart {
+    position: fixed;
+    z-index: 10;
+    color: #ff1744;
+    pointer-events: none;
+    text-shadow:
+        0 0 8px #ff1744,
+        0 0 20px #ff1744;
+    animation: heartFloat linear forwards;
+}
+
+@keyframes heartFloat {
+    0% {
+        transform: translateY(0) scale(.5);
         opacity: 0;
-        animation: appear 2s ease forwards;
-        animation-delay: 10s;
     }
-
-    .message p {
-        margin-top: 12px;
-        font-size: clamp(15px, 2vw, 22px);
+    15% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) scale(1.3) rotate(25deg);
         opacity: 0;
-        animation: appear 2s ease forwards;
-        animation-delay: 12s;
+    }
+}
+
+@media(max-width:600px) {
+
+    .moon {
+        width: 65px;
+        height: 65px;
+        right: 5%;
+        top: 13%;
     }
 
-    @keyframes appear {
-        from {
-            opacity: 0;
-            transform: translateY(15px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .planet1 {
+        width: 50px;
+        height: 50px;
+        left: 4%;
     }
 
-    .loading {
-        position: fixed;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        color: rgba(255,255,255,.65);
-        font-size: 14px;
-        z-index: 20;
-        letter-spacing: 2px;
+    .planet2 {
+        width: 40px;
+        height: 40px;
+        right: 8%;
     }
+
+    .planet3 {
+        width: 30px;
+        height: 30px;
+    }
+}
 </style>
 </head>
 
 <body>
 
-<div id="scene"></div>
+<div id="space"></div>
 
-<div class="message">
-    <h1>🌹 A Rose For You 🌹</h1>
-    <p>
-        کچھ پھول وقت کے ساتھ مرجھا جاتے ہیں،
-        مگر کچھ یادیں ہمیشہ مہکتی رہتی ہیں۔
-    </p>
+<div class="moon"></div>
+
+<div class="planet planet1">
+    <div class="ring"></div>
 </div>
 
-<div class="loading" id="loading">
-    A rose is being created...
+<div class="planet planet2"></div>
+<div class="planet planet3"></div>
+
+<div class="title">
+    🌹 A Rose Among The Stars 🌌
 </div>
+
+<div class="subtitle">
+    Some flowers are beautiful... but some are made for someone special ❤️
+</div>
+
+<div id="canvas-container"></div>
+
+<div class="message" id="message">
+
+    <div class="english">
+        If I could give you one thing in this universe...
+        <br>
+        I'd give you this rose. 🌹
+    </div>
+
+    <div class="urdu">
+        تم پھول نہیں، وہ خوشبو ہو جو دل میں ہمیشہ رہتی ہے ❤️
+    </div>
+
+</div>
+
+<div class="hint">
+    ✨ Drag the rose • Touch & drag on phone ✨
+</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 
 <script>
 
-const scene = new THREE.Scene();
+/* =====================================================
+   STARS
+===================================================== */
 
-const camera = new THREE.PerspectiveCamera(
-    45,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    100
+const space = document.getElementById("space");
+
+for(let i = 0; i < 1000; i++){
+
+    const star = document.createElement("div");
+
+    star.className = "star";
+
+    const size = .5 + Math.random() * 2.2;
+
+    star.style.width = size + "px";
+    star.style.height = size + "px";
+
+    star.style.left =
+        Math.random() * 100 + "%";
+
+    star.style.top =
+        Math.random() * 100 + "%";
+
+    star.style.animationDuration =
+        2 + Math.random() * 5 + "s";
+
+    star.style.animationDelay =
+        Math.random() * 5 + "s";
+
+    const type = Math.random();
+
+    if(type < .05)
+        star.classList.add("red");
+
+    else if(type < .10)
+        star.classList.add("blue");
+
+    else if(type < .15)
+        star.classList.add("pink");
+
+    space.appendChild(star);
+}
+
+
+/* =====================================================
+   THREE JS
+===================================================== */
+
+const container =
+    document.getElementById("canvas-container");
+
+const scene =
+    new THREE.Scene();
+
+const camera =
+    new THREE.PerspectiveCamera(
+        42,
+        window.innerWidth / window.innerHeight,
+        .1,
+        1000
+    );
+
+camera.position.set(
+    0,
+    .4,
+    11
 );
 
-camera.position.set(0, 1.8, 9);
+const renderer =
+    new THREE.WebGLRenderer({
+        antialias:true,
+        alpha:true
+    });
 
-const renderer = new THREE.WebGLRenderer({
-    antialias: true,
-    alpha: true
-});
+renderer.setPixelRatio(
+    Math.min(window.devicePixelRatio,2)
+);
 
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-renderer.shadowMap.enabled = true;
+renderer.setSize(
+    window.innerWidth,
+    window.innerHeight
+);
 
-document.getElementById("scene").appendChild(renderer.domElement);
+renderer.setClearColor(
+    0x010105,
+    0
+);
 
-
-// =====================================================
-// LIGHTS
-// =====================================================
-
-const ambient = new THREE.AmbientLight(0xffb0c8, 1.3);
-scene.add(ambient);
-
-const mainLight = new THREE.PointLight(0xff477e, 5, 20);
-mainLight.position.set(3, 5, 4);
-scene.add(mainLight);
-
-const softLight = new THREE.PointLight(0xffd0dc, 3, 15);
-softLight.position.set(-3, 3, 2);
-scene.add(softLight);
+container.appendChild(
+    renderer.domElement
+);
 
 
-// =====================================================
-// ROSE GROUP
-// =====================================================
+/* =====================================================
+   LIGHTS
+===================================================== */
 
-const rose = new THREE.Group();
-rose.position.y = -3.2;
+scene.add(
+    new THREE.AmbientLight(
+        0xffd0d8,
+        1.8
+    )
+);
+
+const whiteLight =
+    new THREE.PointLight(
+        0xffffff,
+        3,
+        50
+    );
+
+whiteLight.position.set(
+    4,5,6
+);
+
+scene.add(whiteLight);
+
+const roseLight =
+    new THREE.PointLight(
+        0xff0033,
+        15,
+        20
+    );
+
+roseLight.position.set(
+    0,1,2
+);
+
+scene.add(roseLight);
+
+
+/* =====================================================
+   ROSE
+===================================================== */
+
+const rose =
+    new THREE.Group();
+
+rose.position.y = -0.8;
 
 scene.add(rose);
 
 
-// =====================================================
-// STEM
-// =====================================================
+/* =====================================================
+   MATERIALS
+===================================================== */
 
-const stemHeight = 5.2;
+const redOuter =
+    new THREE.MeshPhysicalMaterial({
 
-const stemGeometry = new THREE.CylinderGeometry(
-    0.075,
-    0.11,
-    stemHeight,
-    16
-);
+        color:0xff002b,
 
-const stemMaterial = new THREE.MeshStandardMaterial({
-    color: 0x174d25,
-    roughness: 0.8
-});
+        roughness:.3,
 
-const stem = new THREE.Mesh(
-    stemGeometry,
-    stemMaterial
-);
+        metalness:.02,
 
-stem.position.y = stemHeight / 2;
-stem.scale.y = 0.001;
+        clearcoat:1,
 
-rose.add(stem);
+        clearcoatRoughness:.08,
 
+        emissive:0x65000f,
 
-// =====================================================
-// GROUND
-// =====================================================
+        emissiveIntensity:.65,
 
-const groundGeometry = new THREE.CircleGeometry(4, 64);
-
-const groundMaterial = new THREE.MeshStandardMaterial({
-    color: 0x16070d,
-    transparent: true,
-    opacity: 0.8
-});
-
-const ground = new THREE.Mesh(
-    groundGeometry,
-    groundMaterial
-);
-
-ground.rotation.x = -Math.PI / 2;
-ground.position.y = 0;
-
-rose.add(ground);
-
-
-// =====================================================
-// LEAVES
-// =====================================================
-
-const leaves = [];
-
-function createLeaf(side, height, rotation) {
-
-    const geometry = new THREE.SphereGeometry(
-        0.55,
-        20,
-        12
-    );
-
-    const material = new THREE.MeshStandardMaterial({
-        color: 0x176b35,
-        roughness: 0.7
+        side:THREE.DoubleSide
     });
 
-    const leaf = new THREE.Mesh(
-        geometry,
-        material
+
+const redMiddle =
+    new THREE.MeshPhysicalMaterial({
+
+        color:0xff003d,
+
+        roughness:.26,
+
+        metalness:.01,
+
+        clearcoat:1,
+
+        clearcoatRoughness:.07,
+
+        emissive:0x800018,
+
+        emissiveIntensity:.7,
+
+        side:THREE.DoubleSide
+    });
+
+
+const redInner =
+    new THREE.MeshPhysicalMaterial({
+
+        color:0xff174f,
+
+        roughness:.22,
+
+        metalness:.01,
+
+        clearcoat:1,
+
+        clearcoatRoughness:.06,
+
+        emissive:0xa00024,
+
+        emissiveIntensity:.8,
+
+        side:THREE.DoubleSide
+    });
+
+
+/* =====================================================
+   REALISTIC PETAL SHAPE
+===================================================== */
+
+function makePetal(
+    width,
+    height,
+    depth
+){
+
+    const shape =
+        new THREE.Shape();
+
+    /*
+       This creates a pointed,
+       curved rose-petal outline.
+    */
+
+    shape.moveTo(0,0);
+
+    shape.bezierCurveTo(
+        -width*.75,
+        height*.15,
+        -width*.9,
+        height*.75,
+        0,
+        height
     );
 
-    leaf.scale.set(0.08, 0.35, 0.75);
-
-    leaf.position.set(
-        side * 0.55,
-        height,
+    shape.bezierCurveTo(
+        width*.9,
+        height*.75,
+        width*.75,
+        height*.15,
+        0,
         0
     );
 
-    leaf.rotation.z = rotation;
-    leaf.rotation.y = side * 0.5;
 
-    leaf.scale.set(0.001, 0.001, 0.001);
+    const geometry =
+        new THREE.ExtrudeGeometry(
+            shape,
+            {
+                depth:depth,
+                bevelEnabled:true,
+                bevelSegments:3,
+                bevelSize:.035,
+                bevelThickness:.025,
+                curveSegments:8
+            }
+        );
 
-    rose.add(leaf);
 
-    leaves.push(leaf);
+    geometry.center();
+
+    return geometry;
 }
 
-createLeaf(-1, 1.5, -0.7);
-createLeaf(1, 2.2, 0.7);
-createLeaf(-1, 3.0, -0.7);
-createLeaf(1, 3.7, 0.7);
 
+/* =====================================================
+   PETAL LAYER
+===================================================== */
 
-// =====================================================
-// ROSE BUD
-// =====================================================
-
-const budGroup = new THREE.Group();
-
-budGroup.position.y = stemHeight + 0.1;
-
-rose.add(budGroup);
-
-
-// =====================================================
-// PETAL CREATION
-// =====================================================
-
-const petals = [];
-
-function createPetal(
+function createPetalLayer(
+    count,
     radius,
-    angle,
+    width,
     height,
-    scale,
-    delay,
-    tilt
-) {
+    depth,
+    material,
+    y,
+    tilt,
+    delayStart
+){
 
-    const geometry = new THREE.SphereGeometry(
-        0.8,
-        24,
-        18
-    );
+    const petals = [];
 
-    const material = new THREE.MeshPhysicalMaterial({
-        color: 0xb5123c,
-        roughness: 0.45,
-        metalness: 0.05,
-        clearcoat: 0.4,
-        clearcoatRoughness: 0.3,
-        side: THREE.DoubleSide
-    });
 
-    const petal = new THREE.Mesh(
-        geometry,
-        material
-    );
+    for(let i=0;i<count;i++){
 
-    petal.position.set(
-        Math.cos(angle) * radius,
-        height,
-        Math.sin(angle) * radius
-    );
+        const angle =
+            i / count *
+            Math.PI * 2;
 
-    petal.scale.set(
-        0.001,
-        0.001,
-        0.001
-    );
 
-    petal.rotation.y = angle;
-    petal.rotation.x = tilt;
+        const geometry =
+            makePetal(
+                width,
+                height,
+                depth
+            );
 
-    budGroup.add(petal);
 
-    petals.push({
-        mesh: petal,
-        radius,
-        angle,
-        height,
-        scale,
-        delay,
-        tilt
-    });
+        const petal =
+            new THREE.Mesh(
+                geometry,
+                material
+            );
+
+
+        petal.userData.finalX =
+            Math.cos(angle) * radius;
+
+        petal.userData.finalZ =
+            Math.sin(angle) * radius;
+
+        petal.userData.finalY =
+            y;
+
+        petal.userData.angle =
+            angle;
+
+        petal.userData.delay =
+            delayStart + i*.07;
+
+
+        /*
+           Every petal begins at the center.
+        */
+
+        petal.position.set(
+            0,
+            y*.15,
+            0
+        );
+
+
+        /*
+           Rotate each petal around
+           the rose naturally.
+        */
+
+        petal.rotation.y =
+            angle;
+
+        petal.rotation.x =
+            tilt;
+
+        petal.rotation.z =
+            Math.sin(angle*2)*.18;
+
+
+        petal.scale.set(
+            .02,
+            .02,
+            .02
+        );
+
+
+        rose.add(petal);
+
+        petals.push(petal);
+    }
+
+
+    return petals;
 }
 
 
-// =====================================================
-// OUTER PETALS
-// =====================================================
+/* =====================================================
+   OUTER ROSE PETALS
+===================================================== */
 
-const outerCount = 14;
-
-for(let i = 0; i < outerCount; i++) {
-
-    const angle =
-        (i / outerCount) * Math.PI * 2;
-
-    createPetal(
-        0.48,
-        angle,
-        0,
-        1.05,
-        4.5 + i * 0.22,
-        0.55
+const outerPetals =
+    createPetalLayer(
+        18,
+        1.15,
+        .9,
+        1.65,
+        .12,
+        redOuter,
+        .65,
+        -.28,
+        .2
     );
-}
 
 
-// =====================================================
-// SECOND PETAL LAYER
-// =====================================================
+/* =====================================================
+   SECOND PETAL LAYER
+===================================================== */
 
-const secondCount = 12;
-
-for(let i = 0; i < secondCount; i++) {
-
-    const angle =
-        (i / secondCount) * Math.PI * 2
-        + 0.2;
-
-    createPetal(
-        0.32,
-        angle,
-        0.18,
-        0.88,
-        7.5 + i * 0.18,
-        0.38
+const secondPetals =
+    createPetalLayer(
+        16,
+        .82,
+        .78,
+        1.5,
+        .115,
+        redMiddle,
+        .78,
+        -.38,
+        1.35
     );
-}
 
 
-// =====================================================
-// INNER PETALS
-// =====================================================
+/* =====================================================
+   THIRD PETAL LAYER
+===================================================== */
 
-const innerCount = 9;
-
-for(let i = 0; i < innerCount; i++) {
-
-    const angle =
-        (i / innerCount) * Math.PI * 2;
-
-    createPetal(
-        0.16,
-        angle,
-        0.36,
-        0.68,
-        9.2 + i * 0.15,
-        0.22
+const thirdPetals =
+    createPetalLayer(
+        13,
+        .55,
+        .65,
+        1.3,
+        .11,
+        redInner,
+        .9,
+        -.48,
+        2.35
     );
-}
 
 
-// =====================================================
-// CENTER
-// =====================================================
+/* =====================================================
+   INNER CUP PETALS
+===================================================== */
+
+const innerPetals =
+    createPetalLayer(
+        9,
+        .32,
+        .52,
+        1.0,
+        .1,
+        redInner,
+        1.02,
+        -.6,
+        3.15
+    );
+
+
+const allPetals = [
+    ...outerPetals,
+    ...secondPetals,
+    ...thirdPetals,
+    ...innerPetals
+];
+
+
+/* =====================================================
+   ROSE CENTER
+===================================================== */
 
 const centerGeometry =
-    new THREE.SphereGeometry(0.18, 20, 20);
+    new THREE.SphereGeometry(
+        .28,
+        32,
+        20
+    );
 
 const centerMaterial =
-    new THREE.MeshStandardMaterial({
-        color: 0x7d0928,
-        roughness: 0.5
+    new THREE.MeshPhysicalMaterial({
+
+        color:0xff0033,
+
+        emissive:0xff0022,
+
+        emissiveIntensity:1.5,
+
+        roughness:.2,
+
+        clearcoat:1
     });
 
 const center =
@@ -408,326 +832,488 @@ const center =
         centerMaterial
     );
 
-center.scale.set(0.001,0.001,0.001);
+center.position.y =
+    1.05;
 
-center.position.y = 0.48;
+center.scale.setScalar(.01);
 
-budGroup.add(center);
+rose.add(center);
 
 
-// =====================================================
-// FLOATING HEARTS
-// =====================================================
+/* =====================================================
+   CURLED INNER PETALS
+===================================================== */
 
-const hearts = [];
+const curls = [];
 
-function heartShape() {
-
-    const shape = new THREE.Shape();
-
-    shape.moveTo(0, 0);
-
-    shape.bezierCurveTo(
-        -0.5, 0.5,
-        -1, -0.1,
-        0, -0.8
-    );
-
-    shape.bezierCurveTo(
-        1, -0.1,
-        0.5, 0.5,
-        0, 0
-    );
-
-    return shape;
-}
-
-function createHeart() {
+for(let i=0;i<7;i++){
 
     const geometry =
-        new THREE.ShapeGeometry(heartShape());
+        new THREE.TorusGeometry(
+            .13 + i*.025,
+            .025,
+            12,
+            32,
+            Math.PI*1.6
+        );
+
+    const curl =
+        new THREE.Mesh(
+            geometry,
+            redInner
+        );
+
+    curl.position.y =
+        1.03 + i*.018;
+
+    curl.rotation.x =
+        Math.PI/2;
+
+    curl.rotation.z =
+        i*.85;
+
+    curl.scale.setScalar(.01);
+
+    rose.add(curl);
+
+    curls.push(curl);
+}
+
+
+/* =====================================================
+   STEM
+===================================================== */
+
+const stemGeometry =
+    new THREE.CylinderGeometry(
+        .075,
+        .12,
+        4.6,
+        24
+    );
+
+const stemMaterial =
+    new THREE.MeshPhysicalMaterial({
+
+        color:0x08752a,
+
+        roughness:.6,
+
+        emissive:0x002d0d,
+
+        emissiveIntensity:.3
+    });
+
+const stem =
+    new THREE.Mesh(
+        stemGeometry,
+        stemMaterial
+    );
+
+stem.position.y =
+    -1.65;
+
+rose.add(stem);
+
+
+/* =====================================================
+   LEAVES
+===================================================== */
+
+function leaf(
+    x,
+    y,
+    rotation
+){
+
+    const geometry =
+        new THREE.SphereGeometry(
+            1,
+            24,
+            16
+        );
+
+    geometry.scale(
+        .75,
+        .13,
+        .32
+    );
 
     const material =
-        new THREE.MeshBasicMaterial({
-            color: 0xff477e,
-            transparent: true,
-            opacity: 0.7,
-            side: THREE.DoubleSide
+        new THREE.MeshPhysicalMaterial({
+
+            color:0x07912e,
+
+            roughness:.55,
+
+            emissive:0x002c0c,
+
+            emissiveIntensity:.25,
+
+            side:THREE.DoubleSide
         });
 
-    const heart =
+    const mesh =
         new THREE.Mesh(
             geometry,
             material
         );
 
-    heart.position.set(
-        (Math.random()-0.5)*8,
-        -2 + Math.random()*5,
-        (Math.random()-0.5)*3
+    mesh.position.set(
+        x,
+        y,
+        0
     );
 
-    heart.scale.setScalar(
-        0.04 + Math.random()*0.08
+    mesh.rotation.z =
+        rotation;
+
+    rose.add(mesh);
+}
+
+leaf(-.48,-1.0,-.45);
+leaf(.48,-1.45,.45);
+leaf(-.38,-2.05,-.5);
+
+
+/* =====================================================
+   GROUND GLOW
+===================================================== */
+
+const glow =
+    new THREE.Mesh(
+        new THREE.CircleGeometry(
+            2.3,
+            64
+        ),
+        new THREE.MeshBasicMaterial({
+
+            color:0xff0033,
+
+            transparent:true,
+
+            opacity:.14,
+
+            side:THREE.DoubleSide
+        })
     );
 
-    scene.add(heart);
+glow.rotation.x =
+    -Math.PI/2;
 
-    hearts.push({
-        mesh: heart,
-        speed: 0.002 + Math.random()*0.004
-    });
-}
+glow.position.y =
+    -3.95;
 
-for(let i=0; i<18; i++) {
-    createHeart();
-}
+rose.add(glow);
 
 
-// =====================================================
-// STARS
-// =====================================================
+/* =====================================================
+   BLOOM ANIMATION
+===================================================== */
 
-const starGeometry =
-    new THREE.BufferGeometry();
+const beginning =
+    performance.now();
 
-const starPositions = [];
+function bloom(time){
 
-for(let i=0; i<400; i++) {
-
-    starPositions.push(
-        (Math.random()-0.5)*20,
-        (Math.random()-0.5)*12,
-        -Math.random()*8
-    );
-}
-
-starGeometry.setAttribute(
-    "position",
-    new THREE.Float32BufferAttribute(
-        starPositions,
-        3
-    )
-);
-
-const starMaterial =
-    new THREE.PointsMaterial({
-        color: 0xffffff,
-        size: 0.025,
-        transparent: true,
-        opacity: 0.7
-    });
-
-const stars =
-    new THREE.Points(
-        starGeometry,
-        starMaterial
-    );
-
-scene.add(stars);
+    const seconds =
+        (time-beginning)/1000;
 
 
-// =====================================================
-// ANIMATION CLOCK
-// =====================================================
+    allPetals.forEach(
+        petal => {
 
-const clock = new THREE.Clock();
-
-
-// =====================================================
-// SMOOTH STEP
-// =====================================================
-
-function easeOut(t) {
-
-    return 1 - Math.pow(1-t, 3);
-}
+            const d =
+                petal.userData;
 
 
-// =====================================================
-// MAIN ANIMATION
-// =====================================================
-
-function animate() {
-
-    requestAnimationFrame(animate);
-
-    const elapsed = clock.getElapsedTime();
-
-    // -----------------------------------------------
-    // STEM GROWTH
-    // -----------------------------------------------
-
-    let stemProgress =
-        Math.min(elapsed / 4, 1);
-
-    stem.scale.y =
-        Math.max(0.001, easeOut(stemProgress));
+            let p =
+                (seconds-d.delay)/1.35;
 
 
-    // -----------------------------------------------
-    // LEAF GROWTH
-    // -----------------------------------------------
-
-    leaves.forEach((leaf, i) => {
-
-        const start = 3.0 + i * 0.7;
-
-        let p =
-            Math.min(
+            p =
                 Math.max(
-                    (elapsed-start)/1.2,
-                    0
-                ),
-                1
+                    0,
+                    Math.min(1,p)
+                );
+
+
+            /*
+               Smooth bloom.
+            */
+
+            const ease =
+                1-Math.pow(1-p,3);
+
+
+            petal.position.x =
+                d.finalX * ease;
+
+            petal.position.z =
+                d.finalZ * ease;
+
+            petal.position.y =
+                d.finalY +
+                Math.sin(ease*Math.PI)*.15;
+
+
+            petal.scale.set(
+                ease,
+                ease,
+                ease
             );
 
-        p = easeOut(p);
 
-        leaf.scale.set(
-            p * 0.08,
-            p * 0.35,
-            p * 0.75
-        );
-    });
+            /*
+               Petals slowly open.
+            */
 
-
-    // -----------------------------------------------
-    // BUD APPEARS
-    // -----------------------------------------------
-
-    let budProgress =
-        Math.min(
-            Math.max((elapsed-3.8)/2,0),
-            1
-        );
-
-    budProgress = easeOut(budProgress);
-
-    budGroup.scale.setScalar(
-        budProgress
+            petal.rotation.x =
+                d.finalX > 0
+                ? -.28 + ease*.25
+                : -.28 + ease*.25;
+        }
     );
 
 
-    // -----------------------------------------------
-    // PETAL BLOOM
-    // -----------------------------------------------
-
-    petals.forEach((p) => {
-
-        let progress =
+    const centerP =
+        Math.max(
+            0,
             Math.min(
-                Math.max(
-                    (elapsed-p.delay)/1.3,
-                    0
-                ),
-                1
-            );
-
-        progress = easeOut(progress);
-
-        const s =
-            p.scale * progress;
-
-        p.mesh.scale.set(
-            s,
-            s * 0.55,
-            s
+                1,
+                (seconds-3.5)/1
+            )
         );
 
-
-        // petals move outward while opening
-        const currentRadius =
-            p.radius * progress;
-
-        p.mesh.position.x =
-            Math.cos(p.angle) * currentRadius;
-
-        p.mesh.position.z =
-            Math.sin(p.angle) * currentRadius;
-
-
-        // petals unfold upward
-        p.mesh.rotation.x =
-            p.tilt * (1-progress);
-
-        p.mesh.rotation.y =
-            p.angle;
-    });
-
-
-    // -----------------------------------------------
-    // CENTER APPEARS
-    // -----------------------------------------------
-
-    let centerProgress =
-        Math.min(
-            Math.max((elapsed-10)/1,0),
-            1
-        );
-
-    centerProgress =
-        easeOut(centerProgress);
 
     center.scale.setScalar(
-        centerProgress
+        1-Math.pow(1-centerP,3)
     );
 
 
-    // -----------------------------------------------
-    // FINAL ROSE BREATHING
-    // -----------------------------------------------
+    curls.forEach(
+        (curl,i)=>{
 
-    if(elapsed > 11) {
+            const p =
+                Math.max(
+                    0,
+                    Math.min(
+                        1,
+                        (seconds-3.8-i*.05)/1
+                    )
+                );
 
-        const breathe =
-            1 + Math.sin(elapsed*1.5)*0.025;
+            curl.scale.setScalar(
+                1-Math.pow(1-p,3)
+            );
+        }
+    );
+}
 
-        budGroup.scale.setScalar(
-            breathe
+
+/* =====================================================
+   DRAG
+===================================================== */
+
+let dragging = false;
+
+let lastX = 0;
+let lastY = 0;
+
+let rotationY = 0;
+let rotationX = 0;
+
+
+renderer.domElement.addEventListener(
+    "pointerdown",
+    e => {
+
+        dragging = true;
+
+        lastX = e.clientX;
+        lastY = e.clientY;
+
+        renderer.domElement.setPointerCapture(
+            e.pointerId
         );
+    }
+);
+
+
+renderer.domElement.addEventListener(
+    "pointermove",
+    e => {
+
+        if(!dragging)
+            return;
+
+        const dx =
+            e.clientX-lastX;
+
+        const dy =
+            e.clientY-lastY;
+
+        rotationY +=
+            dx*.012;
+
+        rotationX +=
+            dy*.008;
+
+        rotationX =
+            Math.max(
+                -1,
+                Math.min(
+                    1,
+                    rotationX
+                )
+            );
+
+        lastX =
+            e.clientX;
+
+        lastY =
+            e.clientY;
+    }
+);
+
+
+renderer.domElement.addEventListener(
+    "pointerup",
+    e => {
+
+        dragging = false;
+
+        try {
+            renderer.domElement.releasePointerCapture(
+                e.pointerId
+            );
+        }
+        catch(err){}
+    }
+);
+
+
+/* =====================================================
+   FLOATING HEARTS
+===================================================== */
+
+function createHeart(){
+
+    const h =
+        document.createElement("div");
+
+    h.className =
+        "heart";
+
+    h.innerHTML =
+        Math.random()>.5
+        ? "❤️"
+        : "💗";
+
+    h.style.left =
+        Math.random()*100+"%";
+
+    h.style.bottom =
+        "-30px";
+
+    h.style.fontSize =
+        12+Math.random()*22+"px";
+
+    h.style.animationDuration =
+        5+Math.random()*6+"s";
+
+    space.appendChild(h);
+
+    setTimeout(
+        ()=>h.remove(),
+        12000
+    );
+}
+
+setInterval(
+    createHeart,
+    900
+);
+
+
+/* =====================================================
+   ANIMATION LOOP
+===================================================== */
+
+let start =
+    performance.now();
+
+function animate(time){
+
+    requestAnimationFrame(
+        animate
+    );
+
+    const t =
+        (time-start)/1000;
+
+
+    bloom(time);
+
+
+    /*
+       Very subtle breathing.
+    */
+
+    const breathing =
+        1+
+        Math.sin(t*1.8)*.025;
+
+    rose.scale.set(
+        breathing,
+        breathing,
+        breathing
+    );
+
+
+    /*
+       Automatic rotation
+       unless user is dragging.
+    */
+
+    if(!dragging){
 
         rose.rotation.y =
-            Math.sin(elapsed*0.35)*0.12;
+            rotationY+t*.13;
 
-        rose.rotation.z =
-            Math.sin(elapsed*0.7)*0.015;
+    }
+    else {
+
+        rose.rotation.y =
+            rotationY;
     }
 
 
-    // -----------------------------------------------
-    // MOVING LIGHT
-    // -----------------------------------------------
-
-    mainLight.position.x =
-        Math.sin(elapsed*0.5)*4;
-
-    mainLight.position.z =
-        Math.cos(elapsed*0.5)*4;
+    rose.rotation.x =
+        rotationX;
 
 
-    // -----------------------------------------------
-    // HEARTS
-    // -----------------------------------------------
+    /*
+       Red light pulses.
+    */
 
-    hearts.forEach(h => {
-
-        h.mesh.position.y += h.speed;
-
-        h.mesh.rotation.z += 0.003;
-
-        if(h.mesh.position.y > 5) {
-            h.mesh.position.y = -3;
-        }
-    });
+    roseLight.intensity =
+        12+
+        Math.sin(t*3)*4;
 
 
-    // -----------------------------------------------
-    // STARS
-    // -----------------------------------------------
+    roseLight.position.x =
+        Math.sin(t*1.5)*2;
 
-    stars.rotation.y =
-        elapsed * 0.015;
+
+    roseLight.position.z =
+        2+
+        Math.cos(t*1.2);
+
+
+    glow.material.opacity =
+        .11+
+        Math.sin(t*2)*.035;
 
 
     renderer.render(
@@ -736,19 +1322,35 @@ function animate() {
     );
 }
 
-animate();
+animate(
+    performance.now()
+);
 
 
-// =====================================================
-// RESIZE
-// =====================================================
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+setTimeout(
+    ()=>{
+        document
+            .getElementById("message")
+            .classList.add("show");
+    },
+    9000
+);
+
+
+/* =====================================================
+   RESIZE
+===================================================== */
 
 window.addEventListener(
     "resize",
-    () => {
+    ()=>{
 
         camera.aspect =
-            window.innerWidth /
+            window.innerWidth/
             window.innerHeight;
 
         camera.updateProjectionMatrix();
@@ -759,82 +1361,6 @@ window.addEventListener(
         );
     }
 );
-
-
-// =====================================================
-// MOUSE / TOUCH ROTATION
-// =====================================================
-
-let dragging = false;
-let previousX = 0;
-
-renderer.domElement.addEventListener(
-    "pointerdown",
-    e => {
-        dragging = true;
-        previousX = e.clientX;
-    }
-);
-
-renderer.domElement.addEventListener(
-    "pointerup",
-    () => {
-        dragging = false;
-    }
-);
-
-renderer.domElement.addEventListener(
-    "pointermove",
-    e => {
-
-        if(!dragging) return;
-
-        const movement =
-            e.clientX - previousX;
-
-        rose.rotation.y +=
-            movement * 0.008;
-
-        previousX = e.clientX;
-    }
-);
-
-
-// =====================================================
-// LOADING TEXT
-// =====================================================
-
-setTimeout(() => {
-
-    document.getElementById("loading")
-        .innerText =
-        "🌱 Growing...";
-
-}, 1000);
-
-setTimeout(() => {
-
-    document.getElementById("loading")
-        .innerText =
-        "🌿 Growing leaves...";
-
-}, 3500);
-
-setTimeout(() => {
-
-    document.getElementById("loading")
-        .innerText =
-        "🌹 Blooming...";
-
-}, 6000);
-
-setTimeout(() => {
-
-    document.getElementById("loading")
-        .innerText =
-        "❤️";
-
-}, 11000);
 
 </script>
 
