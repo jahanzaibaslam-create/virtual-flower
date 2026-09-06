@@ -4,9 +4,11 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Just For You 😂❤️</title>
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>A Rose For You 🌹</title>
 
 <style>
 
@@ -16,22 +18,25 @@
 
 html,
 body {
+
     margin: 0;
+
     width: 100%;
     height: 100%;
-}
 
-body {
     overflow: hidden;
-    font-family: Georgia, "Times New Roman", serif;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
     background:
         radial-gradient(
-            circle at 50% 40%,
-            #493b68 0%,
-            #292344 40%,
-            #101326 75%,
-            #050711 100%
+            circle at center,
+            #3b2947,
+            #120d20 55%,
+            #05040b 100%
         );
 
     color: white;
@@ -39,1067 +44,119 @@ body {
 
 
 /* =========================
-   PRANK SCREEN
+   CANVAS
 ========================= */
 
-#prankScreen {
+#canvasContainer {
 
     position: fixed;
-    inset: 0;
-    z-index: 1000;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+}
+
+
+/* =========================
+   TOP MESSAGE
+========================= */
+
+.title {
+
+    position: fixed;
+
+    top: 6%;
+
+    left: 0;
+
+    width: 100%;
 
     text-align: center;
 
-    background:
-        radial-gradient(
-            circle at center,
-            #302744,
-            #0b0d19 75%
-        );
+    z-index: 10;
 
-    transition:
-        opacity 2s ease,
-        visibility 2s ease;
-}
-
-#prankScreen.hide {
-    opacity: 0;
-    visibility: hidden;
     pointer-events: none;
+
+    text-shadow:
+        0 0 15px rgba(255,150,190,.7),
+        0 0 35px rgba(255,80,140,.4);
 }
 
 
-.prankContent {
+.title h1 {
 
-    position: relative;
-    width: 100%;
-    max-width: 700px;
-    padding: 30px;
-}
+    margin: 0;
 
+    font-size: 38px;
 
-.prankTitle {
-
-    font-size: 30px;
-    color: #ffe5ef;
-    margin-bottom: 15px;
+    color: #fff0f6;
 
     animation:
-        titleFloat 5s ease-in-out infinite;
+        glow 5s ease-in-out infinite;
 }
 
 
-.prankText {
-
-    font-size: 22px;
-    color: #f5dce7;
-    margin-bottom: 15px;
-}
-
-
-/* =========================
-   MIDDLE FINGER
-========================= */
-
-.middleFinger {
-
-    font-family: Arial, sans-serif;
-
-    font-size: 150px;
-
-    line-height: 1;
+.title p {
 
     margin-top: 10px;
 
-    opacity: 0;
+    font-size: 16px;
 
-    transform:
-        translateY(180px)
-        scale(.4);
+    color: #f4d9e5;
 
-    animation:
-        fingerRise 2s cubic-bezier(.17,.67,.25,1.2)
-        1.5s forwards;
-
-    filter:
-        drop-shadow(
-            0 0 20px
-            rgba(255,100,150,.4)
-        );
+    opacity: .9;
 }
 
 
-.forYou {
-
-    font-size: 30px;
-
-    font-weight: bold;
-
-    color: #ffb8d2;
-
-    opacity: 0;
-
-    transform:
-        translateY(20px);
-
-    animation:
-        textAppear 1.5s ease
-        3.1s forwards;
-
-    text-shadow:
-        0 0 15px rgba(255,100,160,.6);
-}
-
-
-.waitText {
-
-    margin-top: 18px;
-
-    font-size: 15px;
-
-    color: #d9c5d0;
-
-    opacity: 0;
-
-    animation:
-        textAppear 1.5s ease
-        4s forwards;
-}
-
-
-@keyframes fingerRise {
-
-    0% {
-        opacity: 0;
-
-        transform:
-            translateY(180px)
-            scale(.4)
-            rotate(-15deg);
-    }
-
-    60% {
-        opacity: 1;
-
-        transform:
-            translateY(-20px)
-            scale(1.1)
-            rotate(5deg);
-    }
-
-    100% {
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1)
-            rotate(0);
-    }
-}
-
-
-@keyframes textAppear {
-
-    from {
-        opacity: 0;
-
-        transform:
-            translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-
-        transform:
-            translateY(0);
-    }
-}
-
-
-@keyframes titleFloat {
+@keyframes glow {
 
     0%,100% {
-        transform:
-            translateY(0);
+
+        text-shadow:
+            0 0 12px rgba(255,150,190,.6);
     }
 
     50% {
-        transform:
-            translateY(-6px);
+
+        text-shadow:
+            0 0 25px rgba(255,190,215,1),
+            0 0 45px rgba(255,80,150,.5);
     }
 }
 
 
 /* =========================
-   GARDEN
-========================= */
-
-#garden {
-
-    position: fixed;
-
-    inset: 0;
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    transition:
-        opacity 3s ease;
-
-    overflow: hidden;
-}
-
-
-#garden.show {
-
-    opacity: 1;
-
-    visibility: visible;
-}
-
-
-/* =========================
-   STARS
-========================= */
-
-.star {
-
-    position: absolute;
-
-    width: 3px;
-    height: 3px;
-
-    border-radius: 50%;
-
-    background: white;
-
-    animation:
-        twinkle 7s ease-in-out infinite;
-}
-
-
-.s1  { left: 8%;  top: 13%; }
-.s2  { left: 18%; top: 27%; animation-delay: 1s; }
-.s3  { left: 29%; top: 10%; animation-delay: 2s; }
-.s4  { left: 40%; top: 20%; animation-delay: 3s; }
-.s5  { left: 53%; top: 11%; animation-delay: 1.5s; }
-.s6  { left: 65%; top: 23%; animation-delay: 4s; }
-.s7  { left: 76%; top: 13%; animation-delay: 2.5s; }
-.s8  { left: 89%; top: 30%; animation-delay: 1s; }
-.s9  { left: 13%; top: 43%; animation-delay: 3.5s; }
-.s10 { left: 83%; top: 45%; animation-delay: 5s; }
-.s11 { left: 57%; top: 34%; animation-delay: 2s; }
-.s12 { left: 34%; top: 40%; animation-delay: 4s; }
-
-
-@keyframes twinkle {
-
-    0%,100% {
-        opacity: .2;
-        transform: scale(.7);
-    }
-
-    50% {
-        opacity: 1;
-        transform: scale(1.4);
-    }
-}
-
-
-/* =========================
-   MOON
-========================= */
-
-.moon {
-
-    position: absolute;
-
-    top: 7%;
-    right: 10%;
-
-    width: 75px;
-    height: 75px;
-
-    border-radius: 50%;
-
-    background: #fff6d5;
-
-    box-shadow:
-        0 0 20px #fff6d5,
-        0 0 55px rgba(255,245,210,.45);
-
-    animation:
-        moonGlow 8s ease-in-out infinite;
-}
-
-
-@keyframes moonGlow {
-
-    0%,100% {
-        box-shadow:
-            0 0 20px #fff6d5,
-            0 0 50px rgba(255,245,210,.35);
-    }
-
-    50% {
-        box-shadow:
-            0 0 30px #fff6d5,
-            0 0 75px rgba(255,245,210,.55);
-    }
-}
-
-
-/* =========================
-   GROUND
-========================= */
-
-.ground {
-
-    position: absolute;
-
-    bottom: 0;
-
-    width: 100%;
-
-    height: 18%;
-
-    background:
-        linear-gradient(
-            to top,
-            #020907,
-            #071c14
-        );
-}
-
-
-/* =========================
-   MAIN FLOWER
-========================= */
-
-.flower {
-
-    position: absolute;
-
-    left: 50%;
-    top: 39%;
-
-    width: 240px;
-    height: 350px;
-
-    transform:
-        translate(-50%, -50%);
-
-    animation:
-        flowerSway 10s ease-in-out infinite;
-}
-
-
-@keyframes flowerSway {
-
-    0%,100% {
-        transform:
-            translate(-50%, -50%)
-            rotate(-1.5deg);
-    }
-
-    50% {
-        transform:
-            translate(-50%, -50%)
-            rotate(1.5deg);
-    }
-}
-
-
-/* =========================
-   STEM
-========================= */
-
-.stem {
-
-    position: absolute;
-
-    left: 114px;
-    top: 105px;
-
-    width: 12px;
-    height: 200px;
-
-    border-radius: 20px;
-
-    background:
-        linear-gradient(
-            to right,
-            #15582f,
-            #65d77d,
-            #15582f
-        );
-
-    transform-origin: top;
-
-    animation:
-        growStem 5s ease forwards;
-}
-
-
-@keyframes growStem {
-
-    from {
-        height: 0;
-    }
-
-    to {
-        height: 200px;
-    }
-}
-
-
-/* =========================
-   PETALS
-========================= */
-
-.petal {
-
-    position: absolute;
-
-    left: 78px;
-    top: 40px;
-
-    width: 86px;
-    height: 115px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle at 35% 25%,
-            #ffd5e3,
-            #ff719f 55%,
-            #d92766
-        );
-
-    transform-origin:
-        43px 78px;
-
-    opacity: 0;
-
-    box-shadow:
-        0 0 15px rgba(255,80,140,.4);
-
-    animation:
-        bloom 2.5s ease forwards;
-}
-
-
-.p1 {
-    transform:
-        rotate(0deg)
-        translateY(-58px);
-
-    animation-delay: 1s;
-}
-
-
-.p2 {
-    transform:
-        rotate(72deg)
-        translateY(-58px);
-
-    animation-delay: 1.4s;
-}
-
-
-.p3 {
-    transform:
-        rotate(144deg)
-        translateY(-58px);
-
-    animation-delay: 1.8s;
-}
-
-
-.p4 {
-    transform:
-        rotate(216deg)
-        translateY(-58px);
-
-    animation-delay: 2.2s;
-}
-
-
-.p5 {
-    transform:
-        rotate(288deg)
-        translateY(-58px);
-
-    animation-delay: 2.6s;
-}
-
-
-@keyframes bloom {
-
-    from {
-        opacity: 0;
-        transform: scale(0);
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-
-/* =========================
-   WHITE PEONY CENTER
-========================= */
-
-.center {
-
-    position: absolute;
-
-    left: 77px;
-    top: 53px;
-
-    width: 92px;
-    height: 92px;
-
-    border-radius: 50%;
-
-    z-index: 20;
-
-    background:
-        radial-gradient(
-            circle at 50% 45%,
-            #ffffff 0%,
-            #fffafd 28%,
-            #fbe1ec 48%,
-            #ffffff 68%,
-            #f0cfdd 100%
-        );
-
-    box-shadow:
-        0 0 15px rgba(255,255,255,.95),
-        0 0 35px rgba(255,215,232,.75),
-        0 0 65px rgba(255,180,215,.4);
-
-    animation:
-        peonyBreath 9s ease-in-out infinite;
-}
-
-
-.center::before {
-
-    content: "";
-
-    position: absolute;
-
-    left: 14px;
-    top: 14px;
-
-    width: 64px;
-    height: 64px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            #ffffff 0%,
-            #fff8fc 40%,
-            #f5ccdc 70%,
-            #ffffff 100%
-        );
-
-    box-shadow:
-        inset 0 0 15px rgba(220,150,180,.25);
-
-    animation:
-        innerPeony 8s ease-in-out infinite;
-}
-
-
-.center::after {
-
-    content: "✿";
-
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    transform:
-        translate(-50%, -50%);
-
-    font-size: 22px;
-
-    color: #eaa1be;
-
-    text-shadow:
-        0 0 8px white,
-        0 0 15px #f3c5d9;
-
-    animation:
-        tinyGlow 7s ease-in-out infinite;
-}
-
-
-@keyframes peonyBreath {
-
-    0%,100% {
-        transform:
-            scale(1)
-            rotate(-2deg);
-    }
-
-    50% {
-        transform:
-            scale(1.08)
-            rotate(2deg);
-    }
-}
-
-
-@keyframes innerPeony {
-
-    0%,100% {
-        transform:
-            scale(.94);
-    }
-
-    50% {
-        transform:
-            scale(1.08);
-    }
-}
-
-
-@keyframes tinyGlow {
-
-    0%,100% {
-        opacity: .55;
-    }
-
-    50% {
-        opacity: 1;
-    }
-}
-
-
-/* =========================
-   LEAVES
-========================= */
-
-.leaf {
-
-    position: absolute;
-
-    width: 75px;
-    height: 34px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #69d981,
-            #178744
-        );
-
-    border-radius:
-        100% 0 100% 0;
-}
-
-
-.leaf.left {
-
-    left: 45px;
-    top: 215px;
-
-    transform:
-        rotate(-25deg);
-}
-
-
-.leaf.right {
-
-    right: 45px;
-    top: 240px;
-
-    transform:
-        rotate(155deg);
-}
-
-
-/* =========================
-   RED ROSES
-========================= */
-
-.red-rose {
-
-    position: absolute;
-
-    font-size: 52px;
-
-    filter:
-        drop-shadow(
-            0 0 10px
-            rgba(255,50,80,.55)
-        );
-
-    animation:
-        roseFloat 11s ease-in-out infinite;
-}
-
-
-.rose1 {
-    left: 7%;
-    bottom: 13%;
-}
-
-
-.rose2 {
-    left: 20%;
-    bottom: 7%;
-    animation-delay: 4s;
-}
-
-
-.rose3 {
-    right: 20%;
-    bottom: 8%;
-    animation-delay: 2s;
-}
-
-
-.rose4 {
-    right: 7%;
-    bottom: 14%;
-    animation-delay: 5s;
-}
-
-
-@keyframes roseFloat {
-
-    0%,100% {
-        transform:
-            translateY(0)
-            rotate(-2deg);
-    }
-
-    50% {
-        transform:
-            translateY(-10px)
-            rotate(2deg);
-    }
-}
-
-
-/* =========================
-   PEONIES
-========================= */
-
-.peony {
-
-    position: absolute;
-
-    font-size: 46px;
-
-    animation:
-        peonyFloat 12s ease-in-out infinite;
-}
-
-
-.peony1 {
-    left: 12%;
-    top: 38%;
-}
-
-
-.peony2 {
-    right: 12%;
-    top: 40%;
-    animation-delay: 5s;
-}
-
-
-.peony3 {
-    left: 28%;
-    bottom: 19%;
-    animation-delay: 4s;
-}
-
-
-.peony4 {
-    right: 29%;
-    bottom: 19%;
-    animation-delay: 7s;
-}
-
-
-@keyframes peonyFloat {
-
-    0%,100% {
-        transform:
-            translateY(0)
-            rotate(-2deg);
-    }
-
-    50% {
-        transform:
-            translateY(-8px)
-            rotate(2deg);
-    }
-}
-
-
-/* =========================
-   HEARTS
-========================= */
-
-.heart {
-
-    position: absolute;
-
-    bottom: -40px;
-
-    font-size: 23px;
-
-    opacity: 0;
-
-    animation:
-        heartRise 14s linear infinite;
-}
-
-
-.h1 {
-    left: 10%;
-    animation-delay: 2s;
-}
-
-.h2 {
-    left: 30%;
-    animation-delay: 6s;
-}
-
-.h3 {
-    left: 50%;
-    animation-delay: 4s;
-}
-
-.h4 {
-    left: 70%;
-    animation-delay: 8s;
-}
-
-.h5 {
-    left: 88%;
-    animation-delay: 10s;
-}
-
-
-@keyframes heartRise {
-
-    0% {
-        transform:
-            translateY(0)
-            scale(.5);
-
-        opacity: 0;
-    }
-
-    20% {
-        opacity: .8;
-    }
-
-    50% {
-        opacity: .65;
-    }
-
-    100% {
-        transform:
-            translateY(-105vh)
-            scale(1.1);
-
-        opacity: 0;
-    }
-}
-
-
-/* =========================
-   FALLING PETALS
-========================= */
-
-.falling {
-
-    position: absolute;
-
-    top: -40px;
-
-    font-size: 20px;
-
-    opacity: 0;
-
-    animation:
-        fallingPetal 14s linear infinite;
-}
-
-
-.f1 {
-    left: 10%;
-    animation-delay: 2s;
-}
-
-.f2 {
-    left: 25%;
-    animation-delay: 7s;
-}
-
-.f3 {
-    left: 43%;
-    animation-delay: 4s;
-}
-
-.f4 {
-    left: 63%;
-    animation-delay: 9s;
-}
-
-.f5 {
-    left: 80%;
-    animation-delay: 5s;
-}
-
-.f6 {
-    left: 92%;
-    animation-delay: 11s;
-}
-
-
-@keyframes fallingPetal {
-
-    0% {
-        transform:
-            translateY(0)
-            rotate(0deg);
-
-        opacity: 0;
-    }
-
-    15% {
-        opacity: .75;
-    }
-
-    100% {
-        transform:
-            translateY(110vh)
-            rotate(360deg);
-
-        opacity: 0;
-    }
-}
-
-
-/* =========================
-   SPARKLES
-========================= */
-
-.sparkle {
-
-    position: absolute;
-
-    font-size: 20px;
-
-    animation:
-        sparkle 8s ease-in-out infinite;
-}
-
-
-.sp1 {
-    left: 16%;
-    top: 48%;
-}
-
-.sp2 {
-    right: 17%;
-    top: 50%;
-    animation-delay: 2s;
-}
-
-.sp3 {
-    left: 75%;
-    top: 32%;
-    animation-delay: 4s;
-}
-
-
-@keyframes sparkle {
-
-    0%,100% {
-        opacity: .2;
-        transform: scale(.7);
-    }
-
-    50% {
-        opacity: 1;
-        transform: scale(1.25);
-    }
-}
-
-
-/* =========================
-   MESSAGE
+   BOTTOM MESSAGE
 ========================= */
 
 .message {
 
-    position: absolute;
+    position: fixed;
+
+    bottom: 5%;
 
     left: 0;
 
-    bottom: 3%;
-
     width: 100%;
-
-    padding: 0 18px;
 
     text-align: center;
 
-    animation:
-        messageAppear 5s ease forwards;
+    z-index: 10;
 
-    opacity: 0;
+    pointer-events: none;
 }
 
 
-@keyframes messageAppear {
+.message p {
 
-    from {
-        opacity: 0;
-        transform:
-            translateY(25px);
-    }
+    margin: 5px;
 
-    to {
-        opacity: 1;
-        transform:
-            translateY(0);
-    }
-}
-
-
-.little-line {
-
-    font-size: 17px;
+    color: #f8dce8;
 
     font-style: italic;
 
-    color: #f9dce9;
-
-    opacity: .9;
-
-    margin-bottom: 8px;
+    font-size: 15px;
 }
 
 
@@ -1107,33 +164,18 @@ body {
 
     direction: rtl;
 
-    font-size: 21px;
+    font-size: 20px;
 
-    line-height: 1.85;
+    line-height: 1.8;
 
-    color: #fffafd;
+    max-width: 850px;
 
-    max-width: 1050px;
+    margin: auto;
 
-    margin: 0 auto;
+    color: #fff6fb;
 
     text-shadow:
-        0 0 8px rgba(255,255,255,.25),
-        0 0 18px rgba(255,170,205,.25);
-}
-
-
-.english {
-
-    margin-top: 7px;
-
-    font-size: 15px;
-
-    font-style: italic;
-
-    color: #f7dfe8;
-
-    opacity: .85;
+        0 0 10px rgba(255,180,210,.3);
 }
 
 
@@ -1141,50 +183,40 @@ body {
    MOBILE
 ========================= */
 
-@media (max-width: 600px) {
+@media(max-width:600px) {
 
-    .prankTitle {
-        font-size: 23px;
+    .title {
+
+        top: 4%;
     }
 
-    .prankText {
-        font-size: 18px;
+    .title h1 {
+
+        font-size: 27px;
     }
 
-    .middleFinger {
-        font-size: 110px;
+    .title p {
+
+        font-size: 13px;
     }
 
-    .forYou {
-        font-size: 24px;
-    }
+    .message {
 
-    .moon {
-        width: 55px;
-        height: 55px;
-    }
-
-    .flower {
-        transform:
-            translate(-50%, -50%)
-            scale(.70);
+        bottom: 3%;
     }
 
     .poetry {
-        font-size: 16px;
-        line-height: 1.65;
+
+        font-size: 14px;
+
+        padding: 0 15px;
+
+        line-height: 1.6;
     }
 
-    .english {
-        font-size: 12px;
-    }
+    .message p {
 
-    .red-rose {
-        font-size: 35px;
-    }
-
-    .peony {
-        font-size: 30px;
+        font-size: 11px;
     }
 
 }
@@ -1197,143 +229,31 @@ body {
 <body>
 
 
+<div id="canvasContainer"></div>
+
+
 <!-- =========================
-     PRANK
+     TITLE
 ========================= -->
 
-<div id="prankScreen">
+<div class="title">
 
-    <div class="prankContent">
+    <h1>
+        A Rose For You 🌹
+    </h1>
 
-        <div class="prankTitle">
-            I made something special for you... 👀
-        </div>
-
-        <div class="prankText">
-            Please wait... I have a little surprise 😂
-        </div>
-
-        <div class="middleFinger">
-            🖕
-        </div>
-
-        <div class="forYou">
-            THIS IS FOR YOU 😂🖕
-        </div>
-
-        <div class="waitText">
-            Wait... wait... don't kill me yet 😭😂
-        </div>
-
-    </div>
+    <p>
+        A little something made with code and a lot of love ❤️
+    </p>
 
 </div>
 
 
 <!-- =========================
-     GARDEN
+     MESSAGE
 ========================= -->
-
-<div id="garden">
-
-
-<!-- STARS -->
-
-<div class="star s1"></div>
-<div class="star s2"></div>
-<div class="star s3"></div>
-<div class="star s4"></div>
-<div class="star s5"></div>
-<div class="star s6"></div>
-<div class="star s7"></div>
-<div class="star s8"></div>
-<div class="star s9"></div>
-<div class="star s10"></div>
-<div class="star s11"></div>
-<div class="star s12"></div>
-
-
-<!-- MOON -->
-
-<div class="moon"></div>
-
-
-<!-- FLOWER -->
-
-<div class="flower">
-
-    <div class="stem"></div>
-
-    <div class="leaf left"></div>
-
-    <div class="leaf right"></div>
-
-    <div class="petal p1"></div>
-    <div class="petal p2"></div>
-    <div class="petal p3"></div>
-    <div class="petal p4"></div>
-    <div class="petal p5"></div>
-
-    <div class="center"></div>
-
-</div>
-
-
-<!-- RED ROSES -->
-
-<div class="red-rose rose1">🌹</div>
-<div class="red-rose rose2">🌹</div>
-<div class="red-rose rose3">🌹</div>
-<div class="red-rose rose4">🌹</div>
-
-
-<!-- PEONIES -->
-
-<div class="peony peony1">🌸</div>
-<div class="peony peony2">🌸</div>
-<div class="peony peony3">🤍🌸</div>
-<div class="peony peony4">🌸🤍</div>
-
-
-<!-- HEARTS -->
-
-<div class="heart h1">❤️</div>
-<div class="heart h2">💕</div>
-<div class="heart h3">❤️</div>
-<div class="heart h4">💗</div>
-<div class="heart h5">💖</div>
-
-
-<!-- FALLING FLOWERS -->
-
-<div class="falling f1">🌸</div>
-<div class="falling f2">🌹</div>
-<div class="falling f3">🌸</div>
-<div class="falling f4">🌹</div>
-<div class="falling f5">🌸</div>
-<div class="falling f6">🌹</div>
-
-
-<!-- SPARKLES -->
-
-<div class="sparkle sp1">✨</div>
-<div class="sparkle sp2">✨</div>
-<div class="sparkle sp3">⭐</div>
-
-
-<!-- GROUND -->
-
-<div class="ground"></div>
-
-
-<!-- MESSAGE -->
 
 <div class="message">
-
-    <div class="little-line">
-        okay... THIS one is actually for you 🤍😂
-    </div>
-
 
     <div class="poetry">
 
@@ -1342,23 +262,8 @@ body {
 
         <br>
 
-        تیری آنکھوں میں جو ٹھہر جائے،
-        وہ لمحہ پھر گزرنے کو دل نہ کرے۔ ✨
-
-        <br>
-
         تو پھولوں جیسی نہیں،
-        پھول تو تیرے حسن کی بس ایک مثال ہیں۔ 🌸
-
-        <br>
-
-        تیرے نام سے دل میں اک نرمی سی اتر آتی ہے،
-        جیسے بہار خاموشی سے کسی گلشن میں آ جائے۔ 🤍
-
-        <br>
-
-        تیری موجودگی ہی کافی ہے،
-        کہ عام سا لمحہ بھی خاص بن جائے۔ 💕
+        پھول تو تیرے حسن کی بس ایک مثال ہیں۔ ✨
 
         <br>
 
@@ -1367,92 +272,653 @@ body {
 
     </div>
 
-
-    <div class="english">
-
-        Okay okay... I'm sorry 😂❤️
-        A little garden for you,
-        because you deserve more than just a flower. 🌹
-
-    </div>
+    <p>
+        Drag the rose to look around 🌹
+    </p>
 
 </div>
 
 
-</div>
+<!-- =========================
+     THREE.JS
+========================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/controls/OrbitControls.js"></script>
 
 
 <script>
 
-/* =========================
-   SHOW GARDEN AFTER PRANK
-========================= */
+/* =========================================
+   SCENE
+========================================= */
 
-setTimeout(function() {
-
-    const prank =
-        document.getElementById("prankScreen");
-
-    const garden =
-        document.getElementById("garden");
-
-    garden.classList.add("show");
-
-    setTimeout(function() {
-
-        prank.classList.add("hide");
-
-    }, 500);
-
-}, 7000);
+const scene =
+    new THREE.Scene();
 
 
-/* =========================
-   EXTRA HEARTS
-========================= */
+scene.background =
+    new THREE.Color(0x070510);
 
-setTimeout(function() {
 
-    const garden =
-        document.getElementById("garden");
+/* =========================================
+   CAMERA
+========================================= */
 
-    for (let i = 0; i < 15; i++) {
+const camera =
+    new THREE.PerspectiveCamera(
+        45,
+        window.innerWidth /
+        window.innerHeight,
+        0.1,
+        100
+    );
 
-        const heart =
-            document.createElement("div");
 
-        heart.innerHTML =
-            ["❤️","💕","💗","💖"]
-            [Math.floor(Math.random() * 4)];
+camera.position.set(
+    5,
+    4,
+    8
+);
 
-        heart.style.position =
-            "absolute";
 
-        heart.style.left =
-            Math.random() * 100 + "%";
+/* =========================================
+   RENDERER
+========================================= */
 
-        heart.style.bottom =
-            "0%";
+const renderer =
+    new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true
+    });
 
-        heart.style.fontSize =
-            (15 + Math.random() * 20) + "px";
 
-        heart.style.zIndex =
-            "50";
+renderer.setSize(
+    window.innerWidth,
+    window.innerHeight
+);
 
-        heart.style.pointerEvents =
-            "none";
 
-        heart.style.animation =
-            "heartRise 9s linear forwards";
+renderer.setPixelRatio(
+    Math.min(
+        window.devicePixelRatio,
+        2
+    )
+);
 
-        heart.style.animationDelay =
-            (Math.random() * 3) + "s";
 
-        garden.appendChild(heart);
+document
+    .getElementById("canvasContainer")
+    .appendChild(renderer.domElement);
+
+
+/* =========================================
+   CONTROLS
+========================================= */
+
+const controls =
+    new THREE.OrbitControls(
+        camera,
+        renderer.domElement
+    );
+
+
+controls.enableDamping = true;
+
+controls.dampingFactor = 0.04;
+
+controls.minDistance = 4;
+
+controls.maxDistance = 12;
+
+controls.target.set(
+    0,
+    1.4,
+    0
+);
+
+
+/* =========================================
+   LIGHTS
+========================================= */
+
+const ambientLight =
+    new THREE.AmbientLight(
+        0xffffff,
+        1.5
+    );
+
+scene.add(ambientLight);
+
+
+const pinkLight =
+    new THREE.PointLight(
+        0xff5c9a,
+        8,
+        10
+    );
+
+pinkLight.position.set(
+    3,
+    4,
+    3
+);
+
+scene.add(pinkLight);
+
+
+const whiteLight =
+    new THREE.PointLight(
+        0xffffff,
+        5,
+        10
+    );
+
+whiteLight.position.set(
+    -3,
+    5,
+    4
+);
+
+scene.add(whiteLight);
+
+
+/* =========================================
+   ROSE GROUP
+========================================= */
+
+const rose =
+    new THREE.Group();
+
+scene.add(rose);
+
+
+/* =========================================
+   STEM
+========================================= */
+
+const stemGeometry =
+    new THREE.CylinderGeometry(
+        .07,
+        .11,
+        4,
+        16
+    );
+
+
+const stemMaterial =
+    new THREE.MeshStandardMaterial({
+        color: 0x176b32,
+        roughness: .7
+    });
+
+
+const stem =
+    new THREE.Mesh(
+        stemGeometry,
+        stemMaterial
+    );
+
+
+stem.position.y =
+    -0.3;
+
+rose.add(stem);
+
+
+/* =========================================
+   LEAF FUNCTION
+========================================= */
+
+function createLeaf(
+    x,
+    y,
+    z,
+    rotation
+) {
+
+    const geometry =
+        new THREE.SphereGeometry(
+            0.7,
+            20,
+            10
+        );
+
+
+    const material =
+        new THREE.MeshStandardMaterial({
+            color: 0x238a42,
+            roughness: .65
+        });
+
+
+    const leaf =
+        new THREE.Mesh(
+            geometry,
+            material
+        );
+
+
+    leaf.scale.set(
+        1.5,
+        .3,
+        .55
+    );
+
+
+    leaf.position.set(
+        x,
+        y,
+        z
+    );
+
+
+    leaf.rotation.z =
+        rotation;
+
+
+    rose.add(leaf);
+}
+
+
+createLeaf(
+    -.45,
+    -1.0,
+    0,
+    -.5
+);
+
+
+createLeaf(
+    .45,
+    -1.5,
+    0,
+    .5
+);
+
+
+/* =========================================
+   PETAL FUNCTION
+========================================= */
+
+function createPetal(
+    radius,
+    height,
+    angle,
+    scale,
+    color
+) {
+
+    const geometry =
+        new THREE.SphereGeometry(
+            1,
+            24,
+            16
+        );
+
+
+    const material =
+        new THREE.MeshStandardMaterial({
+
+            color: color,
+
+            roughness: .45,
+
+            metalness: .05
+        });
+
+
+    const petal =
+        new THREE.Mesh(
+            geometry,
+            material
+        );
+
+
+    petal.scale.set(
+        scale * 1.2,
+        scale * .35,
+        scale * .75
+    );
+
+
+    petal.position.set(
+
+        Math.cos(angle) * radius,
+
+        height,
+
+        Math.sin(angle) * radius
+
+    );
+
+
+    petal.rotation.y =
+        -angle;
+
+
+    petal.rotation.x =
+        -.2;
+
+
+    rose.add(petal);
+}
+
+
+/* =========================================
+   OUTER PETALS
+========================================= */
+
+const outerCount = 18;
+
+
+for (
+    let i = 0;
+    i < outerCount;
+    i++
+) {
+
+    const angle =
+        i *
+        Math.PI * 2 /
+        outerCount;
+
+
+    createPetal(
+        1.0,
+        1.55,
+        angle,
+        1,
+        0xd71950
+    );
+}
+
+
+/* =========================================
+   SECOND LAYER
+========================================= */
+
+const secondCount = 16;
+
+
+for (
+    let i = 0;
+    i < secondCount;
+    i++
+) {
+
+    const angle =
+        i *
+        Math.PI * 2 /
+        secondCount
+        + .15;
+
+
+    createPetal(
+        .72,
+        1.8,
+        angle,
+        .82,
+        0xf02d62
+    );
+}
+
+
+/* =========================================
+   INNER PETALS
+========================================= */
+
+const innerCount = 12;
+
+
+for (
+    let i = 0;
+    i < innerCount;
+    i++
+) {
+
+    const angle =
+        i *
+        Math.PI * 2 /
+        innerCount;
+
+
+    createPetal(
+        .43,
+        2.0,
+        angle,
+        .62,
+        0xa90935
+    );
+}
+
+
+/* =========================================
+   CENTER
+========================================= */
+
+const centerGeometry =
+    new THREE.SphereGeometry(
+        .35,
+        24,
+        24
+    );
+
+
+const centerMaterial =
+    new THREE.MeshStandardMaterial({
+        color: 0x78001e,
+        roughness: .4
+    });
+
+
+const center =
+    new THREE.Mesh(
+        centerGeometry,
+        centerMaterial
+    );
+
+
+center.position.y =
+    2.15;
+
+
+rose.add(center);
+
+
+/* =========================================
+   GLOW
+========================================= */
+
+const glowGeometry =
+    new THREE.SphereGeometry(
+        1.7,
+        32,
+        32
+    );
+
+
+const glowMaterial =
+    new THREE.MeshBasicMaterial({
+
+        color: 0xff3f79,
+
+        transparent: true,
+
+        opacity: .06
+    });
+
+
+const glow =
+    new THREE.Mesh(
+        glowGeometry,
+        glowMaterial
+    );
+
+
+glow.position.y =
+    1.4;
+
+
+rose.add(glow);
+
+
+/* =========================================
+   FLOATING HEARTS
+========================================= */
+
+for (
+    let i = 0;
+    i < 15;
+    i++
+) {
+
+    const heart =
+        document.createElement(
+            "div"
+        );
+
+    heart.innerHTML =
+        "❤️";
+
+    heart.style.position =
+        "fixed";
+
+    heart.style.left =
+        Math.random() * 100 + "%";
+
+    heart.style.bottom =
+        "-30px";
+
+    heart.style.fontSize =
+        15 +
+        Math.random() * 18 +
+        "px";
+
+    heart.style.opacity =
+        ".7";
+
+    heart.style.pointerEvents =
+        "none";
+
+    heart.style.zIndex =
+        "5";
+
+    document.body.appendChild(
+        heart
+    );
+
+
+    heart.animate(
+
+        [
+            {
+                transform:
+                    "translateY(0)",
+                opacity: 0
+            },
+
+            {
+                transform:
+                    "translateY(-100vh)",
+                opacity: .8
+            },
+
+            {
+                transform:
+                    "translateY(-110vh)",
+                opacity: 0
+            }
+        ],
+
+        {
+            duration:
+                7000 +
+                Math.random() * 5000,
+
+            delay:
+                Math.random() * 5000,
+
+            iterations:
+                Infinity
+        }
+
+    );
+
+}
+
+
+/* =========================================
+   ROSE ANIMATION
+========================================= */
+
+let time = 0;
+
+
+function animate() {
+
+    requestAnimationFrame(
+        animate
+    );
+
+
+    time += .01;
+
+
+    /*
+       Very slow natural movement
+    */
+
+    rose.rotation.y +=
+        .0015;
+
+
+    rose.position.y =
+        Math.sin(time) * .04;
+
+
+    glow.scale.setScalar(
+        1 +
+        Math.sin(time * 2) * .04
+    );
+
+
+    controls.update();
+
+
+    renderer.render(
+        scene,
+        camera
+    );
+}
+
+
+animate();
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+window.addEventListener(
+    "resize",
+    function() {
+
+        camera.aspect =
+            window.innerWidth /
+            window.innerHeight;
+
+        camera.updateProjectionMatrix();
+
+
+        renderer.setSize(
+            window.innerWidth,
+            window.innerHeight
+        );
+
     }
-
-}, 7000);
+);
 
 </script>
 
